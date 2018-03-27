@@ -1,0 +1,56 @@
+# Cloud Components
+  alexa:
+    filter:
+      exclude_domains:
+        - automation
+        - scene
+        - script
+    entity_config:
+      group.bedroom_lights:
+        name: Bedroom Lights
+        description: Bedroom Lights
+        display_categories: LIGHT
+      light.hall_light:
+        name: Hall Light
+        description: Hallway Light
+        display_categories: LIGHT
+      light.entry_light:
+        name: Entry Light
+        description: Entry Light
+        display_categories: LIGHT
+      light.bathroom_light:
+        name: Bathroom Light
+        description: Bathroom Light
+        display_categories: LIGHT
+      switch.bathroom_fan:
+        name: Bathroom Fan
+        description: Bathroom Fan
+        display_categories: SWITCH
+      light.laundry_light:
+        name: Laundry Room Light
+        description: Laundry Room Light
+        display_categories: LIGHT
+      switch.laundry_fan:
+        name: Laundry Fan
+        description: Laundry Room Fan
+        display_categories: SWITCH
+      light.under_cabinet_lights:
+        name: Kitchen Cabinet Lights
+        description: Kitchen Cabinet Lights
+        display_categories: SWITCH
+      group.livingroom_lights:
+        name: Livingroom Lights
+        description: Livingroom Lights
+        display_categories: LIGHT
+      input_boolean.asleep:
+        name: Sleep Mode
+        description: Sleep Mode
+        display_categories: SWITCH
+      input_boolean.company:
+        name: Company Mode
+        description: Company Mode
+        display_categories: SWITCH
+      input_boolean.vacation:
+        name: Vacation Mode
+        description: Vacation Mode
+        display_categories: SWITCH

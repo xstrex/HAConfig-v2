@@ -1,0 +1,12 @@
+  - platform: template
+    sensors:
+      newt_battery_level:
+        friendly_name: "Newt Battery Level"
+        unit_of_measurement: '%'
+        value_template: "{{ states.vacuum.newt.attributes.battery_level }}"
+      newt_status:
+        friendly_name: "Newt Status"
+        value_template: "{{ states.vacuum.newt.attributes.status }}"
+      newt_sw_version:
+        friendly_name: "Newt Software Ver"
+        value_template: "{{ states.vacuum.newt.attributes.software_version }}"

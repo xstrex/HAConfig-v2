@@ -1,0 +1,36 @@
+  - platform: mqtt
+    state_topic: 'office/temp'
+    name: 'Office Temperature'
+    unit_of_measurement: '°F'
+  - platform: mqtt
+    state_topic: 'office/humidity'
+    name: 'Office Humidity'
+    unit_of_measurement: '%'
+  - platform: mqtt
+    state_topic: 'office/heatindex'
+    name: 'Office Heatindex'
+    unit_of_measurement: '°F'
+  - platform: mqtt
+    state_topic: 'bedroom/temp'
+    name: 'Bedroom Temperature'
+    unit_of_measurement: '°F'
+  - platform: mqtt
+    state_topic: 'bedroom/humidity'
+    name: 'Bedroom Humidity'
+    unit_of_measurement: '%'
+  - platform: mqtt
+    state_topic: 'bedroom/heatindex'
+    name: 'Bedroom Heatindex'
+    unit_of_measurement: '°F'
+  - platform: mqtt
+    state_topic: 'livingroom/temp'
+    name: 'Livingroom Temperature'
+    unit_of_measurement: '°F'
+  - platform: mqtt
+    state_topic: 'livingroom/humidity'
+    name: 'Livingroom Humidity'
+    unit_of_measurement: '%'
+  - platform: mqtt
+    state_topic: 'livingroom/heatindex'
+    name: 'Livingroom Heatindex'
+    unit_of_measurement: '°F'

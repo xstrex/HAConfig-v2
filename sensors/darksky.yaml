@@ -1,0 +1,24 @@
+  - platform: darksky
+    api_key: !secret darksky_api_key
+    monitored_conditions:
+      - summary
+      - minutely_summary
+      - hourly_summary
+      - daily_summary
+      - temperature
+      - temperature_max
+      - temperature_min
+      - apparent_temperature
+      - apparent_temperature_max
+      - apparent_temperature_min
+      - humidity
+      - visibility
+      - ozone
+      - precip_type
+      - precip_probability
+      - precip_intensity
+      - wind_speed
+      - wind_bearing
+      - pressure
+      - icon
+    units: us

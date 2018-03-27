@@ -1,0 +1,43 @@
+  heat_setpoint:
+      url: http://hub.home.morphx.net/rest/nodes/ZW002_1/set/CLISPH/{{ states.input_number.heat_setpoint.state | int }}
+      username: !secret isy_username
+      password: !secret isy_password
+
+  cool_setpoint:
+      url: http://hub.home.morphx.net/rest/nodes/ZW002_1/set/CLISPC/{{ states.input_number.cool_setpoint.state | int }}
+      username: !secret isy_username
+      password: !secret isy_password
+
+  thermostat_mode_off:
+    url: http://hub.home.morphx.net/rest/nodes/ZW002_1/cmd/CLIMD/0
+    username: !secret isy_username
+    password: !secret isy_password
+
+  thermostat_mode_heat:
+    url: http://hub.home.morphx.net/rest/nodes/ZW002_1/cmd/CLIMD/1
+    username: !secret isy_username
+    password: !secret isy_password
+
+  thermostat_mode_cool:
+    url: http://hub.home.morphx.net/rest/nodes/ZW002_1/cmd/CLIMD/2
+    username: !secret isy_username
+    password: !secret isy_password
+
+  thermostat_mode_auto:
+    url: http://hub.home.morphx.net/rest/nodes/ZW002_1/cmd/CLIMD/3
+    username: !secret isy_username
+    password: !secret isy_password
+
+  fan_mode_on:
+    url: http://hub.home.morphx.net/rest/nodes/ZW002_1/cmd/CLIFS/7
+    username: !secret isy_username
+    password: !secret isy_password
+
+  fan_mode_auto:
+    url: http://hub.home.morphx.net/rest/nodes/ZW002_1/cmd/CLIFS/8
+    username: !secret isy_username
+    password: !secret isy_password
+
+
+# http://hub.home.morphx.net/rest/nodes/ZW002_1/
+# http://hub.home.morphx.net/rest/nodes/ZW002_1/set/CLISPH/78

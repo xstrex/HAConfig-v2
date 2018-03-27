@@ -1,0 +1,32 @@
+# N7x1
+- platform: command_line
+  switches:
+    n7x1_screen:
+      command_on: !secret n7x1_screen_on
+      command_off: !secret n7x1_screen_off
+      command_state: !secret n7x1_screen_state
+      value_template: '{{ value == "on" }}'
+      friendly_name: N7x1 Screen
+
+# N7x2
+- platform: command_line
+  switches:
+    n7x2_screen:
+      command_on: !secret n7x2_screen_on
+      command_off: !secret n7x2_screen_off
+      command_state: !secret n7x2_screen_state
+      value_template: '{{ value == "on" }}'
+      friendly_name: N7x2 Screen
+
+# Tnix Screen
+- platform: mqtt
+  name: "Tnix Screen"
+  state_topic: "tablet/tnix/screenresult"
+  command_topic: "tablet/tnix/screen"
+  # availability_topic: "tablet/tnix/heartbeat"
+  # value_template: '{{ value == "true" }}'
+  payload_on: "on"
+  payload_off: "off"
+  # optimistic: false
+  qos: 0
+  retain: true

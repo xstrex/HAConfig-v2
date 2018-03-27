@@ -1,0 +1,14 @@
+#  - host: !secret outside_camera
+#    username: !secret outside_camera_user
+#    password: !secret outside_camera_pass
+#    name: Outside
+#    resolution: high
+#    scan_interval: 30
+#    stream_source: mjpeg
+
+#  - host: !secret inside_camera
+#    username: inside_camera_user
+#    password: inside_camera_pass
+#    name: Livingroom
+#    resolution: low
+#    stream_source: mjpeg

@@ -1,0 +1,21 @@
+  gr1:
+    name: Power Usage
+    entities:
+      - sensor.dishwasher_power
+      - sensor.fridge_power
+      - sensor.washer_power
+    hours_to_show: 12
+    refresh: 60
+
+  #gr1:
+  #  name: Battery Levels
+  #  entities:
+  #    - sensor.money_tree_battery
+  #    - sensor.pothos_battery
+  #    - sensor.n7x1_battery_level
+  #    - sensor.n7x2_battery_level
+  #    - sensor.newt_battery_level
+  #    - sensor.iphone_battery_level
+  #    - sensor.thermostat_battery_level
+  #  hours_to_show: 48
+  #  refresh: 120

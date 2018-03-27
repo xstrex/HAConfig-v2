@@ -1,0 +1,60 @@
+# N7x Devices
+  - platform: rest
+    name: n7x1
+    json_attributes:
+      - batteryLevel
+      - kioskMode
+      - screenBrightness
+      - motionDetectorState
+      - maintenanceMode
+      - appFreeMemory
+      - appUsedMemory
+      - totalFreeMemory
+      - totalUsedMemory
+      - hostname4
+      - ip4
+      - mac
+      - locationLatitude
+      - locationLongitude
+      - locationAltitude
+      - startUrl
+      - currentPage
+    resource: !secret n7x1_rest
+    value_template: '{{ value_json.isScreenOn }}'
+
+  - platform: rest
+    name: n7x2
+    json_attributes:
+      - batteryLevel
+      - kioskMode
+      - screenBrightness
+      - motionDetectorState
+      - maintenanceMode
+      - appFreeMemory
+      - appUsedMemory
+      - totalFreeMemory
+      - totalUsedMemory
+      - hostname4
+      - ip4
+      - mac
+      - locationLatitude
+      - locationLongitude
+      - locationAltitude
+      - startUrl
+      - currentPage
+    resource: !secret n7x2_rest
+    value_template: '{{ value_json.isScreenOn }}'
+
+  - platform: template
+    sensors:
+      n7x1_battery_level:
+        friendly_name: "n7x1_battery_level"
+        unit_of_measurement: '%'
+        value_template: "{{ states.sensor.n7x1.attributes.batteryLevel }}"
+
+  - platform: template
+    sensors:
+      n7x2_battery_level:
+        friendly_name: "n7x2_battery_level"
+        unit_of_measurement: '%'
+        value_template: "{{ states.sensor.n7x2.attributes.batteryLevel }}"

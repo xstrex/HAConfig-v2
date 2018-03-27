@@ -1,0 +1,6 @@
+  - platform: ios
+    target: !secret notify_ios_target
+  - name: pushover
+    platform: pushover
+    api_key: !secret notify_pushover_api
+    user_key: !secret notify_pushover_user

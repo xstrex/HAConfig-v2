@@ -1,0 +1,458 @@
+# Scripts
+
+# Morning Lights Weekday
+  morning_lights_weekday:
+    alias: 'Morning Lights Weekday'
+    sequence:
+      - service: light.turn_on
+        data:
+          entity_id: group.bedroom_lights
+          brightness: 1
+          color_temp: 358
+      - delay:
+          seconds: 1
+      - service: light.turn_on
+        data_template:
+          entity_id: group.bedroom_lights
+          brightness: 100
+          transition: >
+            {{ states.input_number.morning_lights_fadein.state | int * 60  }}
+      - service: switch.turn_on
+        entity_id: switch.n7x1_screen
+      - service: switch.turn_on
+        entity_id: switch.n7x2_screen
+      - delay: 600
+      - service: input_number.set_value
+        data_template:
+          entity_id: input_number.heat_setpoint
+          value: >
+            {{ states.input_number.home_heat.state | int }}
+      - service: input_number.set_value
+        data_template:
+          entity_id: input_number.cool_setpoint
+          value: >
+            {{ states.input_number.home_cool.state | int }}
+      - service: light.turn_on
+        data:
+          entity_id: light.under_cabinet_lights
+      - service: light.turn_on
+        data:
+          entity_id: light.hall_light
+          transition: 120
+      - service: light.turn_on
+        data:
+          entity_id: light.bathroom_light
+      - service: input_boolean.turn_off
+        data:
+          entity_id: input_boolean.asleep
+      - delay: 2700
+      - service: light.turn_on
+        data:
+          entity_id: light.entry_light
+          transition: 120
+
+# Morning Lights Weekend
+  morning_lights_weekend:
+    alias: 'Morning Lights Weekend'
+    sequence:
+      - service: light.turn_on
+        data:
+          entity_id: group.bedroom_lights
+          brightness: 1
+          color_temp: 358
+      - delay:
+          seconds: 1
+      - service: light.turn_on
+        data_template:
+          entity_id: group.bedroom_lights
+          brightness: 100
+          transition: >
+            {{ states.input_number.morning_lights_fadein.state | int * 60 }}
+      - service: switch.turn_on
+        entity_id: switch.n7x1_screen
+      - service: switch.turn_on
+        entity_id: switch.n7x2_screen
+      - service: input_number.set_value
+        data_template:
+          entity_id: input_number.heat_setpoint
+          value: >
+            {{ states.input_number.home_heat.state | int }}
+      - service: input_number.set_value
+        data_template:
+          entity_id: input_number.cool_setpoint
+          value: >
+            {{ states.input_number.home_cool.state | int }}
+      - service: input_boolean.turn_off
+        data:
+          entity_id: input_boolean.asleep
+      - delay: 600
+      - service: light.turn_on
+        data:
+          entity_id: light.under_cabinet_lights
+
+# Home Night
+  home_night:
+    alias: 'Home Night'
+    sequence:
+      - service: scene.turn_on
+        data:
+          entity_id: scene.lr_evening
+      - service: light.turn_on
+        data:
+          entity_id: light.under_cabinet_lights
+      - service: light.turn_on
+        data:
+          entity_id: light.entry_light
+      - service: switch.turn_on
+        entity_id: switch.n7x1_screen
+      - service: switch.turn_on
+        entity_id: switch.n7x2_screen
+
+# Away Night
+  away_night:
+    alias: 'Away Night'
+    sequence:
+      - service: homeassistant.turn_off
+        data:
+          entity_id: group.all_lights
+      - service: switch.turn_off
+        entity_id: switch.n7x1_screen
+      - service: switch.turn_off
+        entity_id: switch.n7x2_screen
+
+# Home Day
+  home_day:
+    alias: 'Home Day'
+    sequence:
+      - service: light.turn_on
+        data:
+          entity_id: light.under_cabinet_lights
+      - service: switch.turn_on
+        entity_id: switch.n7x1_screen
+      - service: switch.turn_on
+        entity_id: switch.n7x2_screen
+
+# Away Day
+  away_day:
+    alias: 'Away Day'
+    sequence:
+      - service: homeassistant.turn_off
+        data:
+          entity_id: group.all_lights
+      - service: switch.turn_off
+        entity_id: switch.n7x1_screen
+      - service: switch.turn_off
+        entity_id: switch.n7x2_screen
+
+# Asleep
+  asleep:
+    alias: 'Asleep'
+    sequence:
+      - service: homeassistant.turn_off
+        data:
+          entity_id: group.all_lights
+      - service: switch.turn_off
+        entity_id: switch.n7x1_screen
+      - service: switch.turn_off
+        entity_id: switch.n7x2_screen
+      - service: input_number.set_value
+        data_template:
+          entity_id: input_number.heat_setpoint
+          value: >
+            {{ states.input_number.sleep_heat.state | int }}
+      - service: input_number.set_value
+        data_template:
+          entity_id: input_number.cool_setpoint
+          value: >
+            {{ states.input_number.sleep_cool.state | int }}
+
+# Awake
+  awake:
+    alias: 'Awake'
+    sequence:
+      - service: scene.turn_on
+        data:
+          entity_id: scene.awake
+
+# Bedtime
+  bedtime:
+    alias: 'Bedtime'
+    sequence:
+      - service: scene.turn_on
+        data:
+          entity_id: scene.bedtime
+      - service: notify.ios_jon_iphone
+        data:
+          message: "Time For Bed"
+          data:
+            push:
+              sound: "US-EN-Morgan-Freeman-Good-Night.wav"
+      - delay: 900
+      - service: light.turn_on
+        data:
+          entity_id: light.bathroom_light
+
+# Alarm Clock
+# Awake
+  alarm_clock_awake_pushed:
+    alias: 'Alarm Clock Awake'
+    sequence:
+      - service: script.turn_on
+        data_template:
+          entity_id: >-
+            {%- if states.binary_sensor.workday_sensor.state == 'on' and states.input_boolean.vacation.state == 'off' and states.input_boolean.company.state == 'off' and states.calendar.holidays_in_united_states.state == 'off' and states.calendar.work.state == 'off' -%}
+              script.morning_lights_weekday
+            {%- elif states.binary_sensor.workday_sensor.state == 'on' and states.input_boolean.vacation.state == 'off' and states.input_boolean.company.state == 'off' and states.calendar.holidays_in_united_states.state == 'on' and states.calendar.work.state == 'off' -%}
+              script.morning_lights_weekend
+            {%- elif states.binary_sensor.workday_sensor.state == 'on' and states.input_boolean.vacation.state == 'off' and states.input_boolean.company.state == 'off' and states.calendar.holidays_in_united_states.state == 'off' and states.calendar.work.state == 'on' -%}
+              script.morning_lights_weekend
+            {%- elif states.binary_sensor.workday_sensor.state == 'off' and states.input_boolean.vacation.state == 'off' and states.input_boolean.company.state == 'off' and states.calendar.holidays_in_united_states.state == 'off' and states.calendar.work.state == 'off' -%}
+              script.morning_lights_weekend
+            {%- else -%}
+              script.morning_lights_weekend
+            {%- endif -%}
+      - service: notify.ios_jon_iphone
+        data:
+          title: "Alarm Clock"
+          message: "Time To Wake Up!"
+          data:
+            push:
+              sound: "US-EN-Alexa-Good-Morning.wav"
+              badge: 0
+              category: alarmclock
+
+# Alarm Clock Awake Button
+  # alarm_clock_awake_button:
+  #   alias: 'Alarm Clock Awake Button'
+  #   sequence:
+  #     - service: script.turn_on
+  #       data:
+  #         entity_id: script.morning_lights_weekday
+
+# Alarm Clock Snooze Button -> Timer
+  alarm_clock_snooze_button:
+    alias: 'Alarm Clock Snooze Button'
+    sequence:
+      - service: light.turn_off
+        data:
+          entity_id: group.bedroom_lights
+      - service: switch.turn_off
+        entity_id: switch.n7x1_screen
+      - service: switch.turn_off
+        entity_id: switch.n7x2_screen
+      - service: light.turn_off
+        data:
+          entity_id: light.hall_light
+      - service: light.turn_off
+        data:
+          entity_id: light.bathroom_light
+      - service: light.turn_off
+        data:
+          entity_id: light.under_cabinet_lights
+      - service: script.turn_off
+        data_template:
+          entity_id: >-
+            {%- if states.binary_sensor.workday_sensor.state == 'on' and states.input_boolean.vacation.state == 'off' and states.input_boolean.company.state == 'off' and states.calendar.holidays_in_united_states.state == 'off' and states.calendar.work.state == 'off' -%}
+              script.morning_lights_weekday
+            {%- elif states.binary_sensor.workday_sensor.state == 'on' and states.input_boolean.vacation.state == 'off' and states.input_boolean.company.state == 'off' and states.calendar.holidays_in_united_states.state == 'on' and states.calendar.work.state == 'off' -%}
+              script.morning_lights_weekend
+            {%- elif states.binary_sensor.workday_sensor.state == 'on' and states.input_boolean.vacation.state == 'off' and states.input_boolean.company.state == 'off' and states.calendar.holidays_in_united_states.state == 'off' and states.calendar.work.state == 'on' -%}
+              script.morning_lights_weekend
+            {%- elif states.binary_sensor.workday_sensor.state == 'off' and states.input_boolean.vacation.state == 'off' and states.input_boolean.company.state == 'off' and states.calendar.holidays_in_united_states.state == 'off' and states.calendar.work.state == 'off' -%}
+              script.morning_lights_weekend
+            {%- else -%}
+              script.morning_lights_weekend
+            {%- endif -%}
+      - service: script.turn_on
+        data:
+          entity_id: script.alarm_clock_snooze_timer
+
+# Alarm Clock Snooze Timer
+  alarm_clock_snooze_timer:
+    alias: 'Alarm Clock Snooze Timer'
+    sequence:
+      - delay: '{{ (states.sensor.alarm_clock_snooze.state | int * 60 ) }}'
+      - service: automation.trigger
+        data:
+          entity_id: automation.alarm_clock_activated
+
+# Bathroom Fan
+  bathroom_fan:
+    alias: 'Bathroom Fan'
+    sequence:
+      - delay: 900
+      - service: switch.turn_off
+        data:
+          entity_id: switch.bathroom_fan
+
+  bathroom_fan_long:
+    alias: 'Bathroom Fan Long'
+    sequence:
+      - delay: 1800
+      - service: switch.turn_off
+        data:
+          entity_id: switch.bathroom_fan
+
+# Roomba Scripts
+  vacuum_start_pause:
+    alias: 'Roomba Start/Pause'
+    sequence:
+      - service: vacuum.start_pause
+        entity_id: vacuum.newt
+
+  vacuum_locate:
+    alias: 'Roomba Locate'
+    sequence:
+      - service: vacuum.locate
+        entity_id: vacuum.newt
+
+  vacuum_return_to_base:
+    alias: 'Roomba Return to Base'
+    sequence:
+      - service: vacuum.return_to_base
+        entity_id: vacuum.newt
+
+# Climate Scripts
+  home_heat:
+    alias: 'Home Heat'
+    sequence:
+    - service: input_number.set_value
+      data_template:
+        entity_id: input_number.heat_setpoint
+        value: >
+          {{ states.input_number.home_heat.state | int }}
+
+  away_heat:
+    alias: 'Away Heat'
+    sequence:
+    - service: input_number.set_value
+      data_template:
+        entity_id: input_number.heat_setpoint
+        value: >
+          {{ states.input_number.away_heat.state | int }}
+
+  home_cool:
+    alias: 'Home Cool'
+    sequence:
+    - service: input_number.set_value
+      data_template:
+        entity_id: input_number.cool_setpoint
+        value: >
+          {{ states.input_number.home_cool.state | int }}
+
+  away_cool:
+    alias: 'Away Cool'
+    sequence:
+    - service: input_number.set_value
+      data_template:
+        entity_id: input_number.cool_setpoint
+        value: >
+          {{ states.input_number.away_cool.state | int }}
+
+# iPhone Scripts
+  iphone_location_update:
+    alias: 'iPhone Location Update'
+    sequence:
+    - service: notify.ios_jon_iphone
+      data:
+        message: "request_location_update"
+    - delay: 30
+    - service: notify.ios_jon_iphone
+      data:
+        message: "request_location_update"
+
+# Dishwasher
+  dishwasher_running:
+    alias: 'Dishwasher Running'
+    sequence:
+    - service: input_select.select_option
+      data:
+        entity_id: input_select.dishwasher_status
+        option: Running
+
+  dishwasher_drying:
+    alias: 'Dishwasher Drying'
+    sequence:
+    - service: input_select.select_option
+      data:
+        entity_id: input_select.dishwasher_status
+        option: Drying
+
+  dishwasher_dirty:
+    alias: 'Dishwasher Dirty'
+    sequence:
+    - service: input_select.select_option
+      data:
+        entity_id: input_select.dishwasher_status
+        option: Dirty
+
+  dishwasher_clean:
+    alias: 'Dishwasher Clean'
+    sequence:
+    - service: input_select.select_option
+      data:
+        entity_id: input_select.dishwasher_status
+        option: Clean
+
+  dishwasher_notify:
+    alias: 'Dishwasher Notification'
+    sequence:
+    - service: notify.ios_jon_iphone
+      data:
+        title: "Dishwasher Update"
+        message: "Dishes are clean!"
+
+# Washing Machine
+  washing_machine_running:
+    alias: 'Washing Machine Running'
+    sequence:
+    - service: input_select.select_option
+      data:
+        entity_id: input_select.washing_machine_status
+        option: Running
+
+  washing_machine_clean:
+    alias: 'Washing Machine Clean'
+    sequence:
+    - service: input_select.select_option
+      data:
+        entity_id: input_select.washing_machine_status
+        option: Clean
+
+  washing_machine_idle:
+    alias: 'Washing Machine Idle'
+    sequence:
+    - service: input_select.select_option
+      data:
+        entity_id: input_select.washing_machine_status
+        option: Idle
+
+  washing_machine_notify:
+    alias: 'Washing Machine Notification'
+    sequence:
+    - service: notify.ios_jon_iphone
+      data:
+        title: "Washing Machine Update"
+        message: "Washing Machine is Done!"
+
+# TTS Testing
+  dishwasher_done_tts:
+    alias: 'Dishwasher Done TTS'
+    sequence:
+    - service: tts.google_say
+      data:
+        entity_id: media_player.n7x1
+        message: "The dishes are done."
+
+# IFTTT
+  bedroom_diffuser_on:
+    alias: 'Bedroom Diffuser On'
+    sequence:
+    - service: ifttt.trigger
+      data: {"event": "HA_bedroom_diffuser_on", "value1": "foo"}
+
+  bedroom_diffuser_off:
+    alias: 'Bedroom Diffuser Off'
+    sequence:
+    - service: ifttt.trigger
+      data: {"event": "HA_bedroom_diffuser_off", "value1": "foo"}

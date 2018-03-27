@@ -1,0 +1,53 @@
+# Scenes
+#  - platform: lifx_cloud
+#    token: !secret lifx_cloud_token
+#    timeout: 20
+
+  - name: LR Evening
+    entities:
+      light.lr_hanging_globe:
+        state: on
+        transition: 2
+        brightness: 138
+        color_temp: 364
+      light.lr_globe:
+        state: on
+        transition: 2
+        brightness: 138
+        color_temp: 364
+
+  - name: LR Media
+    entities:
+      light.lr_hanging_globe:
+        state: on
+        transition: 2
+        brightness: 70
+        color_temp: 349
+      light.lr_globe:
+        state: on
+        transition: 2
+        brightness: 70
+        color_temp: 349
+
+  - name: Bedtime
+    entities:
+      light.br1:
+        state: on
+        transition: 2
+        brightness: 43
+        color_temp: 384
+      light.br2:
+        state: on
+        transition: 2
+        brightness: 43
+        color_temp: 384
+
+  - name: Awake
+    entities:
+      group.bedroom_lights:
+        state: on
+        transition: 2
+        brightness: 30
+      light.hall_light: on
+      light.under_cabinet_lights:
+        state: on

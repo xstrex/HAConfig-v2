@@ -1,0 +1,23 @@
+  pothos:
+    sensors:
+      moisture: sensor.pothos_moisture
+      battery: sensor.pothos_battery
+      temperature: sensor.pothos_temperature
+      conductivity: sensor.pothos_conductivity
+      brightness: sensor.pothos_light_intensity
+    min_moisture: 17
+    max_moisture: 60
+    min_battery: 10
+    min_temperature: 40
+
+  moneytree:
+    sensors:
+      moisture: sensor.money_tree_moisture
+      battery: sensor.money_tree_battery
+      temperature: sensor.money_tree_temperature
+      conductivity: sensor.money_tree_conductivity
+      brightness: sensor.money_tree_light_intensity
+    min_moisture: 8
+    max_moisture: 20
+    min_battery: 10
+    min_temperature: 40

@@ -1,0 +1,10 @@
+# Fully Kiosk Devices
+  - platform: mqtt
+    state_topic: floorplan/kiosk/entry
+    name: n7x1
+    retain: true
+
+  - platform: mqtt
+    state_topic: floorplan/kiosk/bedroom
+    name: n7x2
+    retain: true

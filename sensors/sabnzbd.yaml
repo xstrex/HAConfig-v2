@@ -1,0 +1,12 @@
+  - platform: sabnzbd
+    host: !secret sab_host
+    port: !secret sab_port
+    api_key: !secret sab_key
+    ssl: False
+    monitored_variables:
+      - 'current_status'
+      - 'speed'
+      - 'queue_size'
+      - 'queue_remaining'
+      - 'disk_size'
+      - 'disk_free'

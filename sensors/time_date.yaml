@@ -1,0 +1,21 @@
+  - platform: time_date
+    display_options:
+      - 'time'
+      - 'date'
+      - 'date_time'
+
+  - platform: command_line
+    name: Day of Week
+    command: /opt/hass/scripts/getdayofweek.sh
+
+  - platform: command_line
+    name: Day of Week Short
+    command: /opt/hass/scripts/getdayofweekshort.sh
+
+  - platform: command_line
+    name: Month
+    command: /opt/hass/scripts/getmonth.sh
+
+  - platform: command_line
+    name: Day
+    command: /opt/hass/scripts/getday.sh

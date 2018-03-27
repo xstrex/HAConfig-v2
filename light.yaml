@@ -1,0 +1,7 @@
+  - platform: lifx
+
+  - platform: group
+    name: Under Cabinet Lights
+    entities:
+      - light.kitchen_lights_1
+      - light.kitchen_lights_2

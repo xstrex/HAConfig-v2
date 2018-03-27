@@ -1,0 +1,530 @@
+# Views
+default_view:
+  name: Home
+  icon: mdi:home
+  view: yes
+  entities:
+    - device_tracker.jon_iphone
+    - device_tracker.jon_rav4
+    - group.livingroom
+    - group.entry
+    - group.kitchen
+    - group.laundry_room_dash
+    - group.hallway
+    - group.bathroom
+    - group.bedroom
+    - group.vacuum
+    - group.states
+    - group.scenes
+    - group.tablets
+    - group.theme
+    - group.travel_time
+    - group.mobile_devices
+
+climate_view:
+  name: Climate
+  icon: mdi:nest-thermostat
+  view: yes
+  entities:
+    - group.feels_like
+    - group.climate
+    - group.climate_setpoints
+    - group.weather
+
+livingroom_view:
+  name: Livingroom
+  icon: mdi:television
+  view: yes
+  entities:
+    - group.livingroom_env
+    - group.livingroom_lights
+    - group.livingroom_media
+    - group.livingroom_plant
+
+bedroom_view:
+  name: Bedroom
+  icon: mdi:hotel
+  view: yes
+  entities:
+    - group.bedroom_env
+    - group.bedroom_lights
+    - group.alarm_clock
+    - group.bedroom_plant
+
+kitchen_view:
+  name: Kitchen
+  icon: mdi:food
+  view: yes
+  entities:
+    - group.kitchen_lights
+    - group.kitchen_leak
+    - group.dishwasher_status
+    - group.fridge_status
+
+laundry_room_view:
+  name: Laundry Room
+  icon: mdi:washing-machine
+  view: yes
+  entities:
+    - group.laundry_room
+    - group.washing_machine_status
+
+bathroom_view:
+  name: Bathroom
+  icon: mdi:water-pump
+  view: yes
+  entities:
+    - group.bathroom
+    - group.bathroom_leak
+
+server_view:
+  name: Servers
+  icon: mdi:server
+  view: yes
+  entities:
+    - group.server_env
+    - group.octoprint
+    - group.speedtest
+    - group.sabnzbd
+    - group.system
+    - group.tablets
+
+personal_view:
+  name: Personal View
+  icon: mdi:account
+  view: yes
+  entities:
+    - group.mobile_devices
+    - group.packages
+    - group.calendars
+    - group.coinbase
+
+security_view:
+  name: Security
+  icon: mdi:lock
+  view: yes
+  entities:
+    - group.security
+    - group.kitchen_leak
+    - group.bathroom_leak
+
+power_view:
+  name: Power
+  icon: mdi:flash
+  view: yes
+  entities:
+    - group.fridge_power
+    - group.dishwasher_power
+    - group.washing_machine_power
+    - group.power_usage
+
+automations_view:
+  name: Automations
+  icon: mdi:settings
+  view: yes
+  entities:
+    - group.all_automations
+    - group.all_scripts
+    - group.all_devices
+    - group.all_switches
+    - group.all_lights
+
+# Groups
+livingroom:
+  name: Livingroom
+  entities:
+    - group.livingroom_lights
+    - group.livingroom_media
+    - group.livingroom_plant
+
+livingroom_lights:
+  name: Livingroom Lights
+  icon: mdi:lightbulb-outline
+  entities:
+    - light.lr_globe
+    - light.lr_hanging_globe
+
+livingroom_media:
+  name: Livingroom Media
+  icon: mdi:television
+  entities:
+    - media_player.apple_tv
+    - media_player.sony_bravia_tv
+    - media_player.sony_receiver
+
+bedroom:
+  name: Bedroom
+  entities:
+    - group.bedroom_lights
+    - group.alarm_clock
+    - group.bedroom_plant
+
+bedroom_lights:
+  name: Bedroom Lights
+  icon: mdi:lightbulb-outline
+  entities:
+    - light.br1
+    - light.br2
+
+bathroom:
+  name: Bathroom
+  control: hidden
+  entities:
+    - light.bathroom_light
+    - switch.bathroom_fan
+
+laundry_room_dash:
+  name: Laundry Room
+  control: hidden
+  entities:
+    - light.laundry_light
+    - switch.laundry_fan
+    - sensor.washing_machine_status
+
+laundry_room:
+  name:  Laundry Room
+  control: hidden
+  entities:
+    - light.laundry_light
+    - switch.laundry_fan
+
+washing_machine_status:
+  name: Washing Machine Status
+  control: hidden
+  entities:
+    - sensor.washing_machine_status
+    - sensor.washer_energy_today
+    - sensor.washer_energy_yesterday
+
+washing_machine_power:
+  name: Washing Machine
+  entities:
+    - sensor.washer_current
+    - sensor.washer_power
+    - sensor.washer_voltage
+    - sensor.washer_energy_today
+    - sensor.washer_energy_yesterday
+
+kitchen:
+  name: Kitchen
+  control: hidden
+  entities:
+    - group.kitchen_lights
+    - sensor.kitchen_leakdry
+    - sensor.dishwasher_status
+
+kitchen_lights:
+  name: Kitchen Lights
+  icon: mdi:lightbulb-outline
+  entities:
+    - light.under_cabinet_lights
+
+kitchen_power:
+  name: Kitchen Power
+  control: hidden
+  entities:
+    - group.dishwasher_power
+    - group.fridge_power
+
+dishwasher_status:
+  name: Dishwasher Status
+  control: hidden
+  entities:
+    - sensor.dishwasher_status
+    - sensor.dishwasher_energy_today
+    - sensor.dishwasher_energy_yesterday
+
+dishwasher_power:
+  name: Dish Washer
+  entities:
+    - sensor.dishwasher_current
+    - sensor.dishwasher_power
+    - sensor.dishwasher_voltage
+    - sensor.dishwasher_energy_today
+    - sensor.dishwasher_energy_yesterday
+
+fridge_status:
+  name: Fridge Status
+  control: hidden
+  entities:
+    - sensor.fridge_energy_today
+    - sensor.fridge_energy_yesterday
+
+fridge_power:
+  name: Fridge
+  entities:
+    - sensor.fridge_current
+    - sensor.fridge_power
+    - sensor.fridge_voltage
+    - sensor.fridge_energy_today
+    - sensor.fridge_energy_yesterday
+
+power_usage:
+  name: Power Usage
+  entities:
+    - history_graph.power_usage
+
+entry:
+  name: Entry
+  control: hidden
+  entities:
+    - light.entry_light
+
+hallway:
+  name: Hallway
+  control: hidden
+  entities:
+    - light.hall_light
+
+presence:
+  name: Presence
+  entities:
+    - device_tracker.jon_iphone
+    - device_tracker.jon_rav4
+
+states:
+  name: States
+  control: hidden
+  entities:
+    - input_boolean.asleep
+    - input_boolean.vacation
+    - input_boolean.company
+    - binary_sensor.workday_sensor
+
+scenes:
+  name: Scenes
+  control: hidden
+  entities:
+    - scene.awake
+    - scene.bedtime
+    - scene.lr_evening
+    - scene.lr_media
+
+feels_like:
+  name: Feels Like
+  control: hidden
+  entities:
+    - sensor.livingroom_mean
+    - sensor.house_mean
+
+climate:
+  name: Climate
+  control: hidden
+  entities:
+    - sensor.house_temp
+    - sensor.heat_setpoint
+    - sensor.cool_setpoint
+    # - sensor.thermostat_mode
+    - input_number.heat_setpoint
+    - input_number.cool_setpoint
+    - sensor.thermostat_state
+    - input_select.thermostat_mode
+    # - sensor.fan_mode
+    - sensor.fan_state
+    - input_select.fan_mode
+    - sensor.thermostat_battery_level
+
+climate_setpoints:
+  name: Climate Setpoints
+  control: hidden
+  entities:
+    - input_number.home_heat
+    - input_number.away_heat
+    - input_number.home_cool
+    - input_number.away_cool
+    - input_number.sleep_cool
+    - input_number.sleep_heat
+
+weather:
+  name: Weather
+  control: hidden
+  entities:
+    - sensor.dark_sky_summary
+    - sensor.dark_sky_temperature
+    - sensor.dark_sky_humidity
+    - sensor.dark_sky_apparent_temperature
+    - sensor.dark_sky_daily_high_temperature
+    - sensor.dark_sky_daily_high_apparent_temperature
+    - sensor.dark_sky_daily_low_temperature
+    - sensor.dark_sky_daily_low_apparent_temperature
+    - sensor.dark_sky_ozone
+    - sensor.dark_sky_precip
+    - sensor.dark_sky_precip_intensity
+    - sensor.dark_sky_precip_probability
+    - sensor.dark_sky_pressure
+    - sensor.dark_sky_visibility
+    - sensor.dark_sky_wind_bearing
+    - sensor.dark_sky_wind_speed
+
+forecast:
+  name: Forecast
+  entities:
+    - sensor.dark_sky_minutely_summary
+    - sensor.dark_sky_hourly_summary
+    - sensor.dark_sky_daily_summary
+
+alarm_clock:
+  name: Alarm Clock
+  icon: mdi:alarm
+  entities:
+    - input_boolean.alarm_clock_status
+    - sensor.alarm_clock_time
+    - input_number.alarm_clock_hour
+    - input_number.alarm_clock_minute
+    - sensor.alarm_clock_snooze
+    - input_number.alarm_clock_snooze
+    - sensor.morning_lights_fadein
+    - input_number.morning_lights_fadein
+
+livingroom_plant:
+  name: Plant
+  icon: mdi:leaf
+  entities:
+    - plant.moneytree
+
+bedroom_plant:
+  name: Plant
+  icon: mdi:leaf
+  entities:
+    - plant.pothos
+
+livingroom_env:
+  name: Climate
+  entities:
+    - sensor.livingroom_temperature
+    - sensor.livingroom_humidity
+    - sensor.livingroom_heatindex
+
+bedroom_env:
+  name: Climate
+  entities:
+    - sensor.bedroom_temperature
+    - sensor.bedroom_humidity
+    - sensor.bedroom_heatindex
+
+server_env:
+  name: Climate
+  entities:
+    - sensor.office_temperature
+    - sensor.office_humidity
+    - sensor.office_heatindex
+
+octoprint:
+  name: Octopi
+  entities:
+    - sensor.octoprint_current_state
+    - sensor.octoprint_job_percentage
+    - binary_sensor.octoprint_printing
+    - binary_sensor.octoprint_printing_error
+    - sensor.octoprint_actual_bed_temp
+    - sensor.octoprint_target_bed_temp
+    - sensor.octoprint_actual_tool0_temp
+    - sensor.octoprint_target_tool0_temp
+
+speedtest:
+  name: Speedtest
+  entities:
+    - sensor.speedtest_ping
+    - sensor.speedtest_download
+    - sensor.speedtest_upload
+
+system:
+  name: System
+  entities:
+    - sensor.internet_status
+    - sensor.bt_dev
+    - sensor.ssl_certificate_expiry
+
+sabnzbd:
+  name: Sabnzbd
+  entities:
+    - sensor.sabnzbd_status
+    - sensor.sabnzbd_queue
+    - sensor.sabnzbd_speed
+    - sensor.sabnzbd_left
+    - sensor.sabnzbd_disk
+    - sensor.sabnzbd_disk_free
+
+tablets:
+  name: Tablets
+  control: hidden
+  entities:
+    - switch.n7x1_screen
+    - sensor.n7x1_battery_level
+    - switch.n7x2_screen
+    - sensor.n7x2_battery_level
+
+vacuum:
+  name: Roomba
+  control: hidden
+  entities:
+    - vacuum.newt
+    - sensor.newt_status
+    - sensor.newt_battery_level
+    - sensor.newt_sw_version
+    - script.vacuum_start_pause
+    - script.vacuum_return_to_base
+    - script.vacuum_locate
+
+theme:
+  name: Theme Select
+  entities:
+    - input_select.hass_theme
+
+travel_time:
+  name: Travel Time
+  entities:
+    - sensor.home_travel_time
+    - sensor.work_travel_time
+    - sensor.kate_travel_time
+    - sensor.chipotle_travel_time
+
+mobile_devices:
+  name: Mobile Devices
+  entities:
+    - sensor.iphone_battery_level
+    - sensor.iphone_battery_state
+    - sensor.tricorder_battery_level
+    - sensor.tricorder_battery_state
+
+packages:
+  name: Packages
+  entities:
+    - sensor.ups_packages
+
+calendars:
+  name: Calendars
+  entities:
+    - calendar.jdickesgmailcom
+    - calendar.work
+    - calendar.holidays_in_united_states
+
+coinbase:
+  name: Bitcoins
+  entities:
+    - sensor.coinbase_usd_wallet
+    - sensor.coinbase_my_wallet
+    - sensor.coinbase_eth_wallet
+
+security:
+  name: Security
+  entities:
+    - binary_sensor.front_dooropened
+    - binary_sensor.front_doorheartbeat
+    - binary_sensor.patio_dooropened
+    - binary_sensor.patio_doorheartbeat
+    - binary_sensor.motionsensor
+    - binary_sensor.motionlow_bat
+    # - binary_sensor.motionduskdawn
+
+kitchen_leak:
+  name: Kitchen Leak Sensor
+  entities:
+    - binary_sensor.kitchen_leakdry
+    - binary_sensor.kitchen_leakheartbeat
+
+bathroom_leak:
+  name: Bathroom Leak Sensor
+  entities:
+    - binary_sensor.bathroom_leakdry
+    - binary_sensor.bathroom_leakheartbeat

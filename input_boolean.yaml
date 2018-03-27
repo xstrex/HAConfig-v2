@@ -1,0 +1,24 @@
+vacation:
+  name: Vacation
+  initial: off
+  icon: mdi:beach
+
+asleep:
+  name: Asleep
+  initial: off
+  icon: mdi:bed
+
+company:
+  name: Company
+  initial: off
+  icon: mdi:account-multiple
+
+# workday:
+#   name: Work
+#   initial: off
+#   icon: mdi:domain
+
+alarm_clock_status:
+  name: Alarm Clock Status
+  initial: on
+  icon: mdi:alarm

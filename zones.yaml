@@ -1,0 +1,12 @@
+# Zones
+- name: 'Home'
+  latitude: !secret latitude
+  longitude: !secret longitude
+  radius: 52
+  icon: mdi:home
+
+- name: 'Work'
+  latitude: !secret work-latitude
+  longitude: !secret work-longitude
+  radius: 100
+  icon: mdi:domain

@@ -1,0 +1,6 @@
+# Morning Lights Fade-in
+  - platform: template
+    sensors:
+      morning_lights_fadein:
+        friendly_name: "Fade-in Minutes"
+        value_template: '{{ states.input_number.morning_lights_fadein.state | int }}'

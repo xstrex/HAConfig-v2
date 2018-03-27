@@ -1,0 +1,4 @@
+  - platform: ups
+    name: ups_packages
+    username: !secret ups_user
+    password: !secret ups_pass

@@ -1,0 +1,68 @@
+# Alexa
+
+# Locate Intent
+    LocateIntent:
+      speech:
+        type: plaintext
+        text: >
+          {% if is_state('device_tracker.jon_iphone', 'home') %} 
+            He's at home.
+          {% else %}
+            He's not home.
+          {% endif %}
+
+# Temperature Sensors
+    LivingroomTemp:
+      speech:
+        type: plaintext
+        text: >
+          The livingroom temperature is {{ states.sensor.livingroom_temperature.state|round }} degrees, but it feels like {{ states.sensor.livingroom_heatindex.state|round }}.
+    OfficeTemp:
+      speech:
+        type: plaintext
+        text: >
+          The office temperature is {{ states.sensor.office_temperature.state|round }} degrees, but it feels like {{ states.sensor.office_heatindex.state|round }}.
+    BedroomTemp:
+      speech:
+        type: plaintext
+        text: >
+          The bedroom temperature is {{ states.sensor.bedroom_temperature.state|round }} degrees, but it feels like {{ states.sensor.bedroom_heatindex.state|round }}.
+
+# Security Report
+    SecurityReport:
+      speech:
+        type: plaintext
+        text: >
+          {% if is_state('switch.front_dooropened', 'on') %}
+            The front door is open.
+          {% elif is_state('switch.patio_dooropened', 'on') %}
+            The patio door is open.
+          {% elif is_state('switch.motionsensor', 'on') %}
+            Motion detected in the living room.
+          {% elif is_state('binary_sensor.aeotec_zw100_multisensor_6_sensor_4_0', 'on') %}
+            Motion detected on the patio.
+          {% elif is_state('switch.front_dooropened', 'off') and
+                  is_state('switch.patio_dooropened', 'off') and
+                  is_state('switch.motionsensor', 'off') and
+                  is_state('binary_sensor.aeotec_zw100_multisensor_6_sensor_4_0', 'off') %}
+            The house is secure.
+          {% endif %}
+
+# Weather Forcast
+    WeatherForcast:
+      speech:
+        type: plaintext
+        text: >
+            Currently it's {{ states.sensor.dark_sky_apparent_temperature.state | round(0) }} degrees, and {{ states.sensor.dark_sky_minutely_summary.state }}. Later, you should expect {{ states.sensor.dark_sky_hourly_summary.state }}.
+    WeatherJacket:
+      speech:
+        type: plaintext
+        text: >
+          {% if states('sensor.dark_sky_apparent_temperature') | float < 45 %}
+            Yes you do, it's currently {{ states.sensor.dark_sky_apparent_temperature.state | round(0) }} degrees. 
+          {% elif states('sensor.dark_sky_apparent_temperature') | float > 50 %}
+            Maybe, it's currently {{ states.sensor.dark_sky_apparent_temperature.state | round(0) }} degrees.
+          {% elif states('sensor.dark_sky_apparent_temperature') | float > 60 %}
+            No, you should be good, it's currently {{ states.sensor.dark_sky_apparent_temperature.state | round(0) }} degrees.
+          {% endif %}
+

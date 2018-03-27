@@ -1,0 +1,39 @@
+  hass_theme:
+    name: Choose Theme
+    options:
+     - default
+     - day
+     - night
+    icon: mdi:theme-light-dark
+
+  thermostat_mode:
+    name: Thermostat Mode
+    options:
+      - Auto
+      - Heat
+      - Cool
+      - "Off"
+    icon: mdi:gauge
+
+  fan_mode:
+    name: Fan Mode
+    options:
+      - Auto
+      - "On"
+    icon: mdi:fan
+
+  dishwasher_status:
+    name: Dishwasher Status
+    options:
+      - Dirty
+      - Running
+      - Drying
+      - Clean
+    icon: mdi:food-off
+
+  washing_machine_status:
+    name: Washing Machine Status
+    options:
+      - Idle
+      - Running
+      - Clean

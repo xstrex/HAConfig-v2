@@ -1,0 +1,91 @@
+# Sonoff sensors
+
+# Washing Machine: sonoff-6683
+  - platform: mqtt
+    name: "Washer Energy Today"
+    state_topic: "tele/sonoff-6683/SENSOR"
+    value_template: '{{ value_json["ENERGY"]["Today"] }}'
+    unit_of_measurement: "kWh"
+  - platform: mqtt
+    name: "Washer Energy Yesterday"
+    state_topic: "tele/sonoff-6683/SENSOR"
+    value_template: '{{ value_json["ENERGY"]["Yesterday"] }}'
+    unit_of_measurement: "kWh"
+  - platform: mqtt
+    name: "Washer Power"
+    state_topic: "tele/sonoff-6683/SENSOR"
+    value_template: '{{ value_json["ENERGY"]["Power"] }}'
+    unit_of_measurement: "W"
+  - platform: mqtt
+    name: "Washer Voltage"
+    state_topic: "tele/sonoff-6683/SENSOR"
+    value_template: '{{ value_json["ENERGY"]["Voltage"] }}'
+    unit_of_measurement: "V"
+  - platform: mqtt
+    name: "Washer Current"
+    state_topic: "tele/sonoff-6683/SENSOR"
+    value_template: '{{ value_json["ENERGY"]["Current"] }}'
+    unit_of_measurement: "A"
+
+# Firdge: sonoff-3486
+  - platform: mqtt
+    name: "Fridge Energy Today"
+    state_topic: "tele/sonoff-3486/SENSOR"
+    value_template: '{{ value_json["ENERGY"]["Today"] }}'
+    unit_of_measurement: "kWh"
+  - platform: mqtt
+    name: "Fridge Energy Yesterday"
+    state_topic: "tele/sonoff-3486/SENSOR"
+    value_template: '{{ value_json["ENERGY"]["Yesterday"] }}'
+    unit_of_measurement: "kWh"
+  - platform: mqtt
+    name: "Fridge Power"
+    state_topic: "tele/sonoff-3486/SENSOR"
+    value_template: '{{ value_json["ENERGY"]["Power"] }}'
+    unit_of_measurement: "W"
+  - platform: mqtt
+    name: "Fridge Voltage"
+    state_topic: "tele/sonoff-3486/SENSOR"
+    value_template: '{{ value_json["ENERGY"]["Voltage"] }}'
+    unit_of_measurement: "V"
+  - platform: mqtt
+    name: "Fridge Current"
+    state_topic: "tele/sonoff-3486/SENSOR"
+    value_template: '{{ value_json["ENERGY"]["Current"] }}'
+    unit_of_measurement: "A"
+
+# Dish Washer: sonoff-3710
+  - platform: mqtt
+    name: "Dishwasher Energy Today"
+    state_topic: "tele/sonoff-3710/SENSOR"
+    value_template: '{{ value_json["ENERGY"]["Today"] }}'
+    unit_of_measurement: "kWh"
+  - platform: mqtt
+    name: "Dishwasher Energy Yesterday"
+    state_topic: "tele/sonoff-3710/SENSOR"
+    value_template: '{{ value_json["ENERGY"]["Yesterday"] }}'
+    unit_of_measurement: "kWh"
+  - platform: mqtt
+    name: "Dishwasher Power"
+    state_topic: "tele/sonoff-3710/SENSOR"
+    value_template: '{{ value_json["ENERGY"]["Power"] }}'
+    unit_of_measurement: "W"
+  - platform: mqtt
+    name: "Dishwasher Voltage"
+    state_topic: "tele/sonoff-3710/SENSOR"
+    value_template: '{{ value_json["ENERGY"]["Voltage"] }}'
+    unit_of_measurement: "V"
+  - platform: mqtt
+    name: "Dishwasher Current"
+    state_topic: "tele/sonoff-3710/SENSOR"
+    value_template: '{{ value_json["ENERGY"]["Current"] }}'
+    unit_of_measurement: "A"
+
+  - platform: template
+    sensors:
+      washing_machine_status:
+        value_template: '{{ states.input_select.washing_machine_status.state}}'
+        friendly_name: 'Washing Machine Status'
+      dishwasher_status:
+        value_template: '{{ states.input_select.dishwasher_status.state}}'
+        friendly_name: 'Dishwasher Status'

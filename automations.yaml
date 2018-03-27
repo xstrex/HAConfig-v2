@@ -1,0 +1,913 @@
+# Media Lights Fade-in/out
+- id: livingroom_tv_pause
+  alias: Living Room TV Paused/Stopped
+  trigger:
+  - platform: state
+    entity_id: media_player.apple_tv
+    from: 'playing'
+  - platform: state
+    entity_id: media_player.sony_bravia_tv
+    from: 'playing'
+  condition:
+  - condition: state
+    entity_id: sun.sun
+    state: below_horizon
+  action:
+  - service: scene.turn_on
+    entity_id: scene.lr_evening
+
+- id: livingroom_tv_play
+  alias: Living Room TV Playing
+  trigger:
+  - platform: state
+    entity_id: media_player.apple_tv
+    to: 'playing'
+  - platform: state
+    entity_id: media_player.sony_bravia_tv
+    to: 'playing'
+  condition:
+  - condition: state
+    entity_id: sun.sun
+    state: below_horizon
+  action:
+  - service: scene.turn_on
+    entity_id: scene.lr_media
+
+- id: livingroom_tv_dim
+  alias: Living Room TV Playing Sunset
+  trigger:
+  - platform: sun
+    event: sunset
+  condition:
+  - condition: state
+    entity_id: media_player.apple_tv
+    state: 'playing'
+  - condition: state
+    entity_id: media_player.sony_bravia_tv
+    state: 'playing'
+  action:
+  - service: scene.turn_on
+    entity_id: scene.lr_media
+
+# Time of Day Lights
+- id: evening_lights
+  alias: Evening Lights
+  trigger:
+  - platform: sun
+    event: sunset
+    offset: -00:30:00
+  condition:
+  - condition: state
+    entity_id: group.presence
+    state: 'home'
+  - condition: state
+    entity_id: input_boolean.vacation
+    state: 'off'
+  action:
+  - service: scene.turn_on
+    entity_id: scene.lr_evening
+
+# - id: morning_lights_weekday
+#   alias: Morning Lights Weekday
+#   trigger:
+#   - at: '5:50'
+#     platform: time
+#   condition:
+#   - condition: state
+#     entity_id: group.all_devices
+#     state: 'home'
+#   - condition: state
+#     entity_id: input_boolean.vacation
+#     state: 'off'
+#   - condition: state
+#     entity_id: binary_sensor.workday_sensor
+#     state: 'on'
+#   - condition: state
+#     entity_id: calendar.holidays_in_united_states
+#     state: 'off'
+#   - condition: state
+#     entity_id: calendar.work
+#     state: 'off'
+#   action:
+#     service: homeassistant.turn_on
+#     entity_id: script.morning_lights_weekday
+
+# - id: morning_lights_weekend
+#   alias: Morning Lights Weekend
+#   trigger:
+#   - at: '6:30'
+#     platform: time
+#   condition:
+#   - condition: state
+#     entity_id: group.all_devices
+#     state: 'home'
+#   - condition: state
+#     entity_id: input_boolean.vacation
+#     state: 'off'
+#   - condition: state
+#     entity_id: binary_sensor.workday_sensor
+#     state: 'off'
+#   action:
+#     service: homeassistant.turn_on
+#     entity_id: script.morning_lights_weekend
+
+# - id: morning_lights_holiday
+#   alias: Morning Lights Holiday
+#   trigger:
+#   - at: '6:30'
+#     platform: time
+#   condition:
+#   - condition: state
+#     entity_id: group.all_devices
+#     state: 'home'
+#   - condition: state
+#     entity_id: input_boolean.vacation
+#     state: 'off'
+#   - condition: state
+#     entity_id: calendar.holidays_in_united_states
+#     state: 'on'
+#   action:
+#     service: homeassistant.turn_on
+#     entity_id: script.morning_lights_weekend
+
+- id: bedtime_lights_weekday
+  alias: Bedtime Lights Weekday
+  trigger:
+  - at: '21:30:00'
+    platform: time
+  condition:
+    condition: and
+    conditions:
+    - condition: time
+      weekday:
+      - sun
+      - mon
+      - tue
+      - wed
+      - thu
+    - condition: state
+      entity_id: input_boolean.vacation
+      state: 'off'
+    - condition: state
+      entity_id: input_boolean.company
+      state: 'off'
+    - condition: state
+      entity_id: input_boolean.asleep
+      state: 'off'
+    - condition: state
+      entity_id: group.presence
+      state: 'home'
+  action:
+    service: homeassistant.turn_on
+    entity_id: script.bedtime
+
+- id: bedtime_lights_weekend
+  alias: Bedtime Lights Weekend
+  trigger:
+  - at: '22:30:00'
+    platform: time
+  condition:
+    condition: and
+    conditions:
+    - condition: time
+      weekday:
+      - fri
+      - sat
+    - condition: state
+      entity_id: input_boolean.vacation
+      state: 'off'
+    - condition: state
+      entity_id: input_boolean.company
+      state: 'off'
+    - condition: state
+      entity_id: input_boolean.asleep
+      state: 'off'
+    - condition: state
+      entity_id: group.presence
+      state: 'home'
+  action:
+    service: homeassistant.turn_on
+    entity_id: script.bedtime
+
+# Alarm Clock
+- id: alarm_clock_activated
+  alias: Alarm Clock Activated
+  hide_entity: False
+  trigger:
+  - platform: template
+    value_template: '{{ states.sensor.time.state == states.sensor.alarm_clock_time_long.state }}'
+  condition:
+    condition: and
+    conditions:
+    - condition: state
+      entity_id: input_boolean.alarm_clock_status
+      state: 'on'
+    - condition: state
+      entity_id: group.presence
+      state: 'home'
+  action:
+  - service: script.turn_on   # iOS Push Notification
+    entity_id: script.alarm_clock_awake_pushed
+
+# Alarm Clock Awake Pushed
+# - id: alarm_clock_awake_action
+#   alias: alarm clock awake action
+#   initial_state: true
+#   hide_entity: true
+#   trigger:
+#   - platform: event
+#     event_type: ios.notification_action_fired
+#     event_data:
+#       actionName: AWAKE
+#   action:
+#     service: script.turn_on
+#     entity_id: script.alarm_clock_awake_button
+
+# Alarm Clock Snooze Pushed
+- id: alarm_clock_snooze_action
+  alias: alarm clock snooze action
+  initial_state: true
+  hide_entity: true
+  trigger:
+  - platform: event
+    event_type: ios.notification_action_fired
+    event_data:
+      actionName: SNOOZE
+  action:
+    service: script.turn_on
+    entity_id: script.alarm_clock_snooze_button
+
+# Presence Based Lights
+- id: home_night
+  alias: Home - Night
+  trigger:
+    platform: state
+    entity_id: group.presence
+    from: not_home
+    to: home
+  condition:
+    condition: and
+    conditions:
+    - condition: sun
+      after: sunset
+      after_offset: -00:30:00
+    - condition: state
+      entity_id: input_boolean.vacation
+      state: 'off'
+    - condition: state
+      entity_id: input_boolean.company
+      state: 'off'
+  action:
+    service: homeassistant.turn_on
+    entity_id: script.home_night
+
+- id: away_night
+  alias: Away - Night
+  trigger:
+  - entity_id: group.presence
+    from: home
+    platform: state
+    to: not_home
+  condition:
+  - condition: and
+    conditions:
+    - condition: sun
+      after: sunset
+      after_offset: -00:30:00
+    - condition: state
+      entity_id: input_boolean.vacation
+      state: 'off'
+    - condition: state
+      entity_id: input_boolean.company
+      state: 'off'
+  action:
+    service: homeassistant.turn_on
+    entity_id: script.away_night
+
+- id: home_day
+  alias: Home - Day
+  trigger:
+    platform: state
+    entity_id: group.presence
+    from: not_home
+    to: home
+  condition:
+    condition: and
+    conditions:
+    - condition: sun
+      before: sunset
+      before_offset: -00:30:00
+    - condition: state
+      entity_id: input_boolean.vacation
+      state: 'off'
+    - condition: state
+      entity_id: input_boolean.company
+      state: 'off'
+  action:
+    service: homeassistant.turn_on
+    entity_id: script.home_day
+
+- id: away_day
+  alias: Away - Day
+  trigger:
+  - entity_id: group.presence
+    from: home
+    platform: state
+    to: not_home
+  condition:
+  - condition: and
+    conditions:
+    - condition: sun
+      before: sunset
+      before_offset: -00:30:00
+    - condition: state
+      entity_id: input_boolean.vacation
+      state: 'off'
+    - condition: state
+      entity_id: input_boolean.company
+      state: 'off'
+  action:
+    service: homeassistant.turn_on
+    entity_id: script.away_day
+
+# Sleep Automations
+- id: good_night
+  alias: Good Night
+  trigger:
+    platform: state
+    entity_id: input_boolean.asleep
+    from: 'off'
+    to: 'on'
+  condition:
+  - condition: and
+    conditions:
+    - condition: state
+      entity_id: input_boolean.vacation
+      state: 'off'
+    - condition: state
+      entity_id: input_boolean.company
+      state: 'off'
+    - condition: state
+      entity_id: group.presence
+      state: 'home'
+    # - condition: sun
+    #   after: sunset
+  action:
+    service: homeassistant.turn_on
+    entity_id: script.asleep
+
+- id: awake
+  alias: Awake
+  trigger:
+    platform: state
+    entity_id: input_boolean.asleep
+    from: 'on'
+    to: 'off'
+  condition:
+  - condition: and
+    conditions:
+    - condition: state
+      entity_id: script.morning_lights_weekend
+      state: 'off'
+    - condition: state
+      entity_id: script.morning_lights_weekday
+      state: 'off'
+    - condition: state
+      entity_id: input_boolean.vacation
+      state: 'off'
+    - condition: state
+      entity_id: input_boolean.company
+      state: 'off'
+    - condition: state
+      entity_id: group.presence
+      state: 'home'
+    # - condition: sun
+    #   before: sunrise
+  action:
+    service: homeassistant.turn_on
+    entity_id: script.awake
+
+# Bathroom Fan
+- id: bathroom fan
+  alias: Bathroom Fan
+  trigger:
+    platform: state
+    entity_id: switch.bathroom_fan
+    from: 'off'
+    to: 'on'
+  condition:
+    - condition: state
+      entity_id: script.morning_lights_weekday
+      state: 'off'
+  action:
+    service: homeassistant.turn_on
+    entity_id: script.bathroom_fan
+
+- id: bathroom fan long
+  alias: Bathroom Fan Long
+  trigger:
+    platform: state
+    entity_id: switch.bathroom_fan
+    from: 'off'
+    to: 'on'
+  condition:
+    - condition: state
+      entity_id: script.morning_lights_weekday
+      state: 'on'
+  action:
+    service: homeassistant.turn_on
+    entity_id: script.bathroom_fan_long
+
+# Hot Server Room
+- id: office_servers
+  alias: Server Room Temperature
+  trigger:
+  - above: 90
+    entity_id: sensor.office_heatindex
+    platform: numeric_state
+  action:
+    service: notify.ios_jon_iphone
+    data:
+      title: Heat Warning
+      message: Servers are getting hot
+
+# HASS Theme Automations
+- id: switch_hass_theme
+  alias: Switch Hass Theme
+  trigger:
+  - platform: state
+    entity_id: input_select.hass_theme
+  - platform: homeassistant
+    event: start
+  action:
+  - service: frontend.set_theme
+    data_template:
+      name: '{{ states.input_select.hass_theme.state }}'
+
+- id: day_to_night_theme
+  alias: Day to Night theme
+  trigger:
+  - platform: state
+    entity_id: sun.sun
+    from: above_horizon
+    to: below_horizon
+  action:
+  - service: input_select.select_option
+    data:
+      entity_id: input_select.hass_theme
+      option: night
+
+- id: night_to_day_theme
+  alias: Night to Day theme
+  trigger:
+  - platform: state
+    entity_id: sun.sun
+    from: below_horizon
+    to: above_horizon
+  action:
+  - service: input_select.select_option
+    data:
+      entity_id: input_select.hass_theme
+      option: day
+
+# Roomba Automations
+- id: Weekday Vacuum
+  alias: Weekday Vacuum
+  trigger:
+  - platform: time
+    at: '11:00:00'
+  condition:
+    condition: and
+    conditions:
+    - condition: time
+      weekday:
+        - mon
+        - wed
+        - fri
+    - condition: state
+      entity_id: binary_sensor.workday_sensor
+      state: 'on'
+    - condition: state
+      entity_id: input_boolean.company
+      state: 'off'
+    - condition: state
+      entity_id: device_tracker.jon_iphone
+      state: 'not_home'
+    - condition: state
+      entity_id: calendar.holidays_in_united_states
+      state: 'off'
+    - condition: state
+      entity_id: calendar.work
+      state: 'off'
+  action:
+    service: homeassistant.turn_on
+    entity_id: script.vacuum_start_pause
+
+# Climate Automations
+- id: Climate Mode Heat
+  alias: Climate Mode Heat
+  trigger:
+    platform: state
+    entity_id: input_select.thermostat_mode
+    to: "Heat"
+  action:
+    service: rest_command.thermostat_mode_heat
+
+- id: Climate Mode Cool
+  alias: Climate Mode Cool
+  trigger:
+    platform: state
+    entity_id: input_select.thermostat_mode
+    to: "Cool"
+  action:
+    service: rest_command.thermostat_mode_cool
+
+- id: Climate Mode Auto
+  alias: Climate Mode Auto
+  trigger:
+    platform: state
+    entity_id: input_select.thermostat_mode
+    to: "Auto"
+  action:
+    service: rest_command.thermostat_mode_auto
+
+- id: Climate Mode Off
+  alias: Climate Mode Off
+  trigger:
+    platform: state
+    entity_id: input_select.thermostat_mode
+    to: "Off"
+  action:
+    service: rest_command.thermostat_mode_off
+
+- id: Climate Fan Mode Auto
+  alias: Climate Fan Mode Auto
+  trigger:
+    platform: state
+    entity_id: input_select.fan_mode
+    to: "Auto"
+  action:
+    service: rest_command.fan_mode_auto
+
+- id: Climate Fan Mode On
+  alias: Climate Fan Mode On
+  trigger:
+    platform: state
+    entity_id: input_select.fan_mode
+    to: "On"
+  action:
+    service: rest_command.fan_mode_on
+
+- id: Climate Mode Update
+  alias: Climate Mode Update
+  trigger:
+    platform: state
+    entity_id: sensor.thermostat_mode
+  action:
+    service: input_select.select_option
+    data_template:
+      entity_id: input_select.thermostat_mode
+      option: >
+        {{ states.sensor.thermostat_mode.state }}
+
+- id: Climate Fan Mode Update
+  alias: Climate Fan Mode Update
+  trigger:
+    platform: state
+    entity_id: sensor.fan_mode
+  action:
+    service: input_select.select_option
+    data_template:
+      entity_id: input_select.fan_mode
+      option: >
+        {{ states.sensor.fan_mode.state }}
+
+- id: Heat Setpoint
+  alias: Heat Setpoint Slider
+  trigger:
+    platform: state
+    entity_id: input_number.heat_setpoint
+  action:
+    service: rest_command.heat_setpoint
+
+- id: Cool Setpoint
+  alias: Cool Setpoint Slider
+  trigger:
+    platform: state
+    entity_id: input_number.cool_setpoint
+  action:
+    service: rest_command.cool_setpoint
+
+- id: Home Heat
+  alias: Home Heat
+  trigger:
+    platform: state
+    entity_id: group.presence
+    from: not_home
+    to: home
+  condition:
+    condition: state
+    entity_id: sensor.thermostat_mode
+    state: "Heat"
+  action:
+    service: homeassistant.turn_on
+    entity_id: script.home_heat
+
+- id: Away Heat
+  alias: Away Heat
+  trigger:
+    platform: state
+    entity_id: group.presence
+    from: home
+    to: not_home
+  condition:
+    condition: state
+    entity_id: sensor.thermostat_mode
+    state: "Heat"
+  action:
+    service: homeassistant.turn_on
+    entity_id: script.away_heat
+
+- id: Home Cool
+  alias: Home Cool
+  trigger:
+    platform: state
+    entity_id: group.presence
+    from: not_home
+    to: home
+  condition:
+    condition: state
+    entity_id: sensor.thermostat_mode
+    state: "Cool"
+  action:
+    service: homeassistant.turn_on
+    entity_id: script.home_cool
+
+- id: Away Cool
+  alias: Away Cool
+  trigger:
+    platform: state
+    entity_id: group.presence
+    from: home
+    to: not_home
+  condition:
+    condition: state
+    entity_id: sensor.thermostat_mode
+    state: "Cool"
+  action:
+    service: homeassistant.turn_on
+    entity_id: script.away_cool
+
+# Requst iOS Location when RAV4 is Home
+- id: iPhone Location Update
+  alias: iPhone Location Update
+  trigger:
+    platform: state
+    entity_id: device_tracker.jon_rav4
+    from: 'not_home'
+    to: 'home'
+    for:
+      seconds: 30
+  condition:
+    condition: state
+    entity_id: device_tracker.ios_jon_iphone
+    state: not_home
+  action:
+    service: homeassistant.turn_on
+    entity_id: script.iphone_location_update
+
+# Intruder Automations
+# - id: intruder_alert
+#   alias: Intruder Alert
+#   trigger:
+#   - platform: state
+#     entity_id: switch.front_dooropened
+#     from: 'off'
+#     to: 'on'
+#   - platform: state
+#     entity_id: switch.motionsensor
+#     to: 'on'
+#   condition:
+#   - condition: and
+#     conditions:
+#     - condition: state
+#       entity_id: input_boolean.company
+#       state: 'off'
+#     - condition: state
+#       entity_id: group.presence
+#       state: not_home
+#   action:
+#   - service: notify.ios_jon_iphone
+#     data:
+#       title: Intruder Alert
+#       message: Someone's in your apartment!
+#   - service: light.turn_on
+#     entity_id:
+#       - light.entry_light
+#       - light.hall_light
+#
+# - id: intruder_clear
+#   alias: Intruder Clear
+#   trigger:
+#   - platform: state
+#     entity_id: switch.motionsensor
+#     to: 'off'
+#     for:
+#       minutes: 5
+#   condition:
+#   - condition: and
+#     conditions:
+#     - condition: state
+#       entity_id: input_boolean.company
+#       state: 'off'
+#     - condition: state
+#       entity_id: group.presence
+#       state: not_home
+#   action:
+#   - service: notify.ios_jon_iphone
+#     data:
+#       title: Intruder Clear
+#       message: All Clear
+#   - service: light.turn_off
+#     entity_id:
+#       - light.entry_light
+#       - light.hall_light
+
+# Dishwasher
+# Washing: 700W, 698W, 191W, 158W, 696W
+# Drying: 516W, 487W, 490W, 491W, 492W,
+- id: Dishwasher Active
+  alias: Dishwasher Active
+  trigger:
+  - platform: numeric_state
+    entity_id: sensor.dishwasher_power
+    above: 650
+    below: 710
+  condition:
+    condition: or
+    conditions:
+    - condition: state
+      entity_id: input_select.dishwasher_status
+      state: Dirty
+    - condition: state
+      entity_id: input_select.dishwasher_status
+      state: Clean
+    # - condition: state
+    #   entity_id: input_select.dishwasher_status
+    #   state: Drying
+  action:
+    service: homeassistant.turn_on
+    entity_id: script.dishwasher_running
+
+- id: Dishwasher Drying
+  alias: Dishwasher Drying
+  trigger:
+  - platform: numeric_state
+    entity_id: sensor.dishwasher_power
+    above: 450
+    below: 550
+  condition:
+    condition: and
+    conditions:
+    - condition: state
+      entity_id: input_select.dishwasher_status
+      state: Running
+  action:
+    service: homeassistant.turn_on
+    entity_id: script.dishwasher_drying
+
+- id: Dishwasher Clean
+  alias: Dishwasher Clean
+  trigger:
+  - platform: numeric_state
+    entity_id: sensor.dishwasher_power
+    # above: 5
+    below: 5
+  condition:
+    condition: and
+    conditions:
+    - condition: state
+      entity_id: input_select.dishwasher_status
+      state: Drying
+  action:
+    service: homeassistant.turn_on
+    entity_id: script.dishwasher_clean
+
+# - id: Dishwasher Dirty
+#   alias: Dishwasher Dirty
+#   trigger:
+#   - platform: numeric_state
+#     entity_id: sensor.dishwasher_power
+#     below: 5
+#     for:
+#       minutes: 30
+#   condition:
+#     condition: or
+#     conditions:
+#     - condition: state
+#       entity_id: input_select.dishwasher_status
+#       state: Clean
+#     - condition: state
+#       entity_id: input_select.dishwasher_status
+#       state: Drying
+#   action:
+#     service: homeassistant.turn_on
+#     entity_id: script.dishwasher_dirty
+
+- id: Dishwasher Clean Alert
+  alias: Dishwasher Clean Alert
+  trigger:
+  - platform: state
+    entity_id: input_select.dishwasher_status
+    to: Clean
+  - platform: state
+    entity_id: device_tracker.jon_iphone
+    to: 'home'
+    for:
+      minutes: 10
+  condition:
+    condition: and
+    conditions:
+    - condition: time
+      after: '7:00:00'
+      before: '22:00:00'
+    - condition: state
+      entity_id: device_tracker.jon_iphone
+      state: 'home'
+      for:
+        minutes: 10
+    - condition: state
+      entity_id: input_select.dishwasher_status
+      state: Clean
+  action:
+    service: homeassistant.turn_on
+    entity_id: script.dishwasher_notify
+
+# Washing Machine
+- id: Washing Machine Active
+  alias: Washing Machine Active
+  trigger:
+  - platform: numeric_state
+    entity_id: sensor.washer_power
+    above: 5
+    below: 800
+  condition:
+    condition: or
+    conditions:
+      - condition: state
+        entity_id: sensor.washing_machine_status
+        state: Idle
+      - condition: state
+        entity_id: sensor.washing_machine_status
+        state: Clean
+  action:
+    service: homeassistant.turn_on
+    entity_id: script.washing_machine_running
+
+- id: Washing Machine Clean
+  alias: Washing Machine Clean
+  trigger:
+  - platform: numeric_state
+    entity_id: sensor.washer_power
+    below: 5
+    # above: 0
+    for:
+      minutes: 2
+  condition:
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: sensor.washing_machine_status
+        state: Running
+  action:
+    service: homeassistant.turn_on
+    entity_id: script.washing_machine_clean
+
+- id: washing machine Alert
+  alias: Washing Machine Alert
+  trigger:
+  - platform: state
+    entity_id: input_select.washing_machine_status
+    to: Clean
+  - platform: state
+    entity_id: device_tracker.jon_iphone
+    to: 'home'
+    for:
+      minutes: 10
+  condition:
+    condition: and
+    conditions:
+    - condition: time
+      after: '7:00:00'
+      before: '22:00:00'
+    - condition: state
+      entity_id: device_tracker.jon_iphone
+      state: 'home'
+      for:
+        minutes: 10
+    - condition: state
+      entity_id: input_select.washing_machine_status
+      state: Clean
+  action:
+    service: homeassistant.turn_on
+    entity_id: script.washing_machine_notify

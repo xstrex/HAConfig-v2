@@ -1,0 +1,191 @@
+group.all_automations:
+  friendly_name: Automations
+  hidden: false
+group.all_scripts:
+  friendly_name: Scripts
+  hidden: false
+group.all_switches:
+  friendly_name: Switches
+  hidden: false
+group.all_lights:
+  friendly_name: Lights
+  hidden: false
+group.all_devices:
+  friendly_name: Devices
+  hidden: false
+group.all_plants:
+  friendly_name: Plants
+  hidden: false
+group.all_vacuum_cleaners:
+  friendly_name: Vacuum
+  hidden: false
+group.bedroom_lights:
+  friendly_name: Bedroom Lights
+  emulated_hue_hidden: false
+  emulated_hue_name: bedroom lights
+  homebridge_visible: true
+  homebridge_name: Bedroom Lights
+light.hall_light:
+  emulated_hue_name: hallway light
+  friendly_name: Hall Light
+  homebridge_name: Hallway Light
+  homebridge_visible: true
+  icon: mdi:lightbulb
+light.entry_light:
+  emulated_hue_name: entry light
+  friendly_name: Entry Light
+  homebridge_name: Entry Light
+  homebridge_visible: true
+  icon: mdi:lightbulb
+light.bathroom_light:
+  friendly_name: Bathroom Light
+  emulated_hue_hidden: false
+  emulated_hue_name: Bathroom Light
+  homebridge_visible: true
+  homebridge_name: Bathroom Light
+switch.bathroom_fan:
+  icon: mdi:fan
+  homebridge_visible: true
+  homebridge_name: Bathroom Fan
+light.laundry_light:
+  friendly_name: Laundry Room Light
+  emulated_hue_hidden: false
+  emulated_hue_name: Laundry Room Light
+  homebridge_visible: true
+  homebridge_name: Laundry Room Light
+switch.laundry_fan:
+  icon: mdi:fan
+  homebridge_visible: true
+  homebridge_name: Laundry Room Fan
+group.kitchen_lights:
+  friendly_name: Kitchen Lights
+  emulated_hue_hidden: false
+  emulated_hue_name: kitchen lights
+  homebridge_visible: true
+  homebridge_name: Kitchen Lights
+light.under_cabinet_lights:
+  friendly_name: Under Cabinet Lights
+  emulated_hue_hidden: false
+  emulated_hue_name: Kitchen Under Cabinet Lights
+  homebridge_visible: true
+  homebridge_name: Kitchen Under Cabinet Lights
+group.livingroom_lights:
+  emulated_hue_name: Livingroom Lights
+  friendly_name: Livingroom Lights
+  homebridge_visible: true
+  homebridge_name: Livingroom Lights
+device_tracker.jon_iphone:
+  friendly_name: Jon
+device_tracker.jon_rav4:
+  friendly_name: RAV4
+input_boolean.asleep:
+  friendly_name: Sleep Mode
+  icon: mdi:hotel
+  emulated_hue_hidden: false
+  emulated_hue_name: Sleep Mode
+input_boolean.company:
+  friendly_name: Company Mode
+  emulated_hue_hidden: false
+  emulated_hue_name: Company Mode
+input_boolean.vacation:
+  friendly_name: Vacation Mode
+  emulated_hue_hidden: false
+  emulated_hue_name: Vacation Mode
+switch.n7x1_screen:
+  icon: mdi:tablet
+sensor.n7x1_battery_level:
+  friendly_name: N7X1 Battery
+  icon: mdi:battery
+switch.n7x2_screen:
+  icon: mdi:tablet
+sensor.n7x2_battery_level:
+  friendly_name: N7X2 Battery
+  icon: mdi:battery
+switch.auto_dr:
+  hidden: true
+sensor.ups_packages:
+  friendly_name: UPS Packages
+sensor.fan_state:
+  icon: mdi:fan
+sensor.thermostat_state:
+  icon: mdi:gauge
+sensor.thermostat_battery_level:
+  icon: mdi:battery
+sensor.alarm_clock_time:
+  icon: mdi:alarm
+sensor.alarm_clock_snooze:
+  icon: mdi:alarm-snooze
+sensor.morning_lights_fadein:
+  icon: mdi:alarm
+sensor.internet_status:
+  icon: mdi:earth
+sensor.bt_dev:
+  icon: mdi:bluetooth
+sensor.washing_machine_status:
+  icon: mdi:washing-machine
+sensor.dishwasher_status:
+  icon: mdi:washing-machine
+sensor.home_travel_time:
+  icon: mdi:home
+sensor.work_travel_time:
+  icon: mdi:domain
+sensor.kate_travel_time:
+  icon: mdi:human-female
+sensor.chipotle_travel_time:
+  icon: mdi:food
+sensor.washer_energy:
+  icon: mdi:power
+sensor.fridge_energy:
+  icon: mdi:power
+sensor.dishwasher_energy:
+  icon: mdi:power
+sensor.dishwasher_current:
+  icon: mdi:power-settings
+sensor.washer_current:
+  icon: mdi:power-settings
+sensor.fridge_current:
+  icon: mdi:power-settings
+sensor.fridge_power:
+  icon: mdi:flash-circle
+sensor.dishwasher_power:
+  icon: mdi:flash-circle
+sensor.washer_power:
+  icon: mdi:flash-circle
+sensor.fridge_voltage:
+  icon: mdi:flash
+sensor.dishwasher_voltage:
+  icon: mdi:flash
+sensor.washer_voltage:
+  icon: mdi:flash
+sensor.newt_battery_level:
+  icon: mdi:battery
+sensor.newt_sw_version:
+  icon: mdi:package-variant
+sensor.newt_status:
+  icon: mdi:roomba
+sensor.livingroom_humidity:
+  icon: mdi:water-percent
+sensor.bedroom_humidity:
+  icon: mdi:water-percent
+sensor.office_humidity:
+  icon: mdi:water-percent
+sensor.octoprint_current_state:
+  icon: mdi:printer-3d
+sensor.octoprint_job_percentage:
+  icon: mdi:ticket-percent
+sensor.sabnzbd_queue:
+  icon: mdi:playlist-minus
+sensor.sabnzbd_speed:
+  icon: mdi:speedometer
+sensor.sabnzbd_left:
+  icon: mdi:download
+sensor.sabnzbd_disk:
+  icon: mdi:disk
+sensor.sabnzbd_disk_free:
+  icon: mdi:disk-alert
+sensor.livingroom_mean:
+  friendly_name: Livingroom Temp
+  icon: mdi:thermometer
+sensor.house_mean:
+  friendly_name: House Temp
+  icon: mdi:thermometer

@@ -1,0 +1,17 @@
+#  - platform: plex
+#    host: !secret plex_host
+#    port: 32400
+  - platform: braviatv
+    host: !secret bravia_host
+
+# Sony Receiver
+  # - platform: songpal
+  #   name: Sony Receiver
+  #   endpoint: !secret str_dn1060_url
+
+# Fully Kiosks
+  - platform: floorplan_speaker
+    name: n7x1
+
+  - platform: floorplan_speaker
+    name: n7x2

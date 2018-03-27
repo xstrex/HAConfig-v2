@@ -1,0 +1,13 @@
+  - platform: traccar
+    username: !secret traccar_user
+    password: !secret traccar_pass
+    host: http://demo4.traccar.org:80
+    track_new_devices: False
+
+  - platform: unifi_direct
+    host: !secret unifi_host
+    username: !secret unifi_user
+    password: !secret unifi_pass
+    interval_seconds: 120
+    consider_home: 180
+    track_new_devices: False

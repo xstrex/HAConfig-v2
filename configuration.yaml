@@ -1,0 +1,201 @@
+homeassistant:
+  name: Home
+  latitude: !secret latitude
+  longitude: !secret longitude
+  elevation: !secret elevation
+  unit_system: imperial
+  time_zone: !secret time_zone
+  customize: !include customize.yaml
+
+frontend:
+  themes: !include themes.yaml
+
+http:
+  api_password: !secret api_password
+  cors_allowed_origins:
+    - https://home-assistant.io
+  use_x_forwarded_for: True
+  trusted_networks:
+  - 127.0.0.1
+  - 192.168.2.0/24
+  ip_ban_enabled: True
+  login_attempts_threshold: 2
+
+panel_custom:
+  - name: floorplan
+    sidebar_title: Floorplan
+    sidebar_icon: mdi:home
+    url_path: floorplan
+    config: !include floorplan.yaml
+
+cloud: !include cloud.yaml
+
+config:
+sun:
+map:
+ios:
+  push:
+    categories:
+      - name: alarm clock
+        identifier: 'alarmclock'
+        actions:
+          - identifier: 'AWAKE'
+            title: 'Awake'
+            destructive: no
+          - identifier: 'SNOOZE'
+            title: 'Snooze'
+            destructive: yes
+
+updater:
+  include_used_components: true
+
+conversation:
+history:
+  include:
+    domains:
+      - device_tracker
+    entities:
+      - media_player.apple_tv
+      - group.presence
+      - light.under_cabinet_lights
+      - group.bedroom_lights
+      - group.livingroom_lights
+      - light.hall_light
+      - light.entry_light
+      - switch.motionsensor
+      - switch.front_dooropened
+      - switch.patio_dooropened
+      - switch.n7x1_screen
+      - switch.n7x2_screen
+      - plant.moneytree
+      - plant.pothos
+      - vacuum.newt
+
+logger:
+  default: warning
+  logs:
+#    homeassistant.components: warning
+#    homeassistant.components.sensor.miflora: error
+    homeassistant.components.media_player.songpal: fatal
+
+recorder:
+  purge_interval: 1
+  purge_keep_days: 3
+  exclude:
+    domains:
+      - automation
+      - weblink
+      - updater
+      - calendar
+      - remote
+      - scene
+    entities:
+      - sun.sun
+      - sensor.last_boot
+      - sensor.date
+
+# Text to speech
+tts:
+  - platform: google
+
+# Devices
+
+# Climate
+#climate:
+#  - platform: zwave
+
+# ISY994(iz)
+isy994:
+  host: !secret isy_host
+  username: !secret isy_username
+  password: !secret isy_password
+
+# MQTT
+mqtt:
+  broker: !secret mqtt_broker
+  port: 1883
+  client_id: home-assistant
+  keepalive: 60
+
+# APCUPSD
+# apcupsd:
+#   host: !secret apc_host
+#   port: !secret apc_port
+
+# Roomba
+vacuum:
+  - platform: roomba
+    host: !secret roomba_host
+    username: !secret roomba_user
+    password: !secret roomba_pass
+    name: newt
+
+octoprint:
+  host: !secret octoprint_host
+  api_key: !secret octoprint_api_key
+  bed: true
+  number_of_tools: 1
+
+# Zwave
+#zwave:
+#  usb_path: /dev/ttyACM0
+
+# Services
+
+# Hubs
+
+# Alexa
+alexa:
+
+# USPS
+# usps:
+#   username: !secret usps_user
+#   password: !secret usps_pass
+
+# Coinbase
+coinbase:
+  api_key: !secret coin_key
+  api_secret: !secret coin_secret
+  exchange_rate_currencies:
+    - BTC
+    - ETH
+
+# GCal
+google:
+  client_id: !secret gcal_id
+  client_secret: !secret gcal_secret
+
+# Homekit
+homekit:
+  pincode: !secret homekit_pin
+
+ifttt:
+  key: !secret ifttt_key
+
+# Include Files
+# amcrest: !include amcrest.yaml
+apple_tv: !include apple_tv.yaml
+automation: !include automations.yaml
+# camera: !include camera.yaml
+device_tracker: !include device_tracker.yaml
+emulated_hue: !include emulated_hue.yaml
+group: !include groups.yaml
+history_graph: !include history_graph.yaml
+input_boolean: !include input_boolean.yaml
+input_select: !include input_select.yaml
+input_number: !include input_number.yaml
+intent_script: !include intent_script.yaml
+light: !include light.yaml
+media_player: !include media_player.yaml
+notify: !include notify.yaml
+plant: !include plants.yaml
+rest_command: !include rest_command.yaml
+scene: !include scene.yaml
+script: !include scripts.yaml
+switch: !include switches.yaml
+zone: !include zones.yaml
+
+# Include Folders
+#alexa: !include_dir_merge_list alexa
+binary_sensor: !include_dir_merge_list binary_sensor
+sensor: !include_dir_merge_list sensors

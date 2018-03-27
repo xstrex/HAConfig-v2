@@ -1,0 +1,5 @@
+  - host: !secret apple_tv_host
+    login_id: !secret apple_tv_login
+    name: Apple TV
+    start_off: true
+    credentials: !secret apple_tv_creds

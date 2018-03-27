@@ -1,0 +1,44 @@
+# Statistics Sensors
+  - platform: statistics
+    name: livingroom_temperature
+    entity_id: sensor.livingroom_temperature
+  - platform: statistics
+    name: livingroom_humidity
+    entity_id: sensor.livingroom_humidity
+  - platform: statistics
+    name: livingroom_heatindex
+    entity_id: sensor.livingroom_heatindex
+  - platform: statistics
+    name: bedroom_temperature
+    entity_id: sensor.bedroom_temperature
+  - platform: statistics
+    name: bedroom_humidity
+    entity_id: sensor.bedroom_humidity
+  - platform: statistics
+    name: bedroom_heatindex
+    entity_id: sensor.bedroom_heatindex
+  - platform: statistics
+    name: office_temperature
+    entity_id: sensor.office_temperature
+  - platform: statistics
+    name: office_humidity
+    entity_id: sensor.office_humidity
+  - platform: statistics
+    name: office_heatindex
+    entity_id: sensor.office_heatindex
+
+# Averages
+  - platform: min_max
+    type: mean
+    name: livingroom_mean
+    entity_ids:
+      - sensor.house_temp
+      - sensor.livingroom_heatindex_mean
+
+  - platform: min_max
+    type: mean
+    name: house_mean
+    entity_ids:
+      - sensor.house_temp
+      - sensor.livingroom_heatindex_mean
+      - sensor.bedroom_heatindex_mean
