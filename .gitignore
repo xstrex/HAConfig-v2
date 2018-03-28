@@ -49,6 +49,7 @@ zwave_device_config.yaml
 zwcfg_0xd5bdf47a.xml
 zwscene.xml
 .*
+!/.travis.yml
 !/.gitignore
 html5_push_registrations.conf
 ip_bans.yaml
