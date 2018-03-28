@@ -16,4 +16,4 @@
 ## Plant monitoring
 [Mi Flora](https://home-assistant.io/components/sensor.miflora/) 
 
-... to be continued
+.... to be continued
