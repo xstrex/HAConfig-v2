@@ -21,4 +21,4 @@
   - platform: group
     name: Kitchen Lights
     entities:
-      - light.light.under_cabinet_lights
+      - light.under_cabinet_lights
