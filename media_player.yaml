@@ -8,10 +8,4 @@
   # - platform: songpal
   #   name: Sony Receiver
   #   endpoint: !secret str_dn1060_url
-
-# Fully Kiosks
-  - platform: floorplan_speaker
-    name: n7x1
-
-  - platform: floorplan_speaker
-    name: n7x2
+  

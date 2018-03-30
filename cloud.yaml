@@ -1,64 +1,90 @@
 # Cloud Components
   alexa:
     filter:
+      include_domains:
+        - light
+        - switch
+        - media_player
+      include_entities:
+        - input_boolean.asleep
+        - input_boolean.company
+        - input_boolean.vacation
+        - input_boolean.alarm_clock_status
       exclude_domains:
+        - alert
         - automation
+        - cover
+        - fan
+        - group
+        - input_boolean
+        - lock
         - scene
         - script
-    entity_config:
-      light.bedroom_lights:
-        name: Bedroom Lights
-        description: Bedroom Lights
-        display_categories: LIGHT
-      light.hall_light:
-        name: Hall Light
-        description: Hallway Light
-        display_categories: SWITCH
-      light.entry_light:
-        name: Entry Light
-        description: Entry Light
-        display_categories: SWITCH
-      light.bathroom_light:
-        name: Bathroom Light
-        description: Bathroom Light
-        display_categories: SWITCH
-      switch.bathroom_fan:
-        name: Bathroom Fan
-        description: Bathroom Fan
-        display_categories: SWITCH
-      light.laundry_light:
-        name: Laundry Room Light
-        description: Laundry Room Light
-        display_categories: SWITCH
-      switch.laundry_fan:
-        name: Laundry Fan
-        description: Laundry Room Fan
-        display_categories: SWITCH
-      light.under_cabinet_lights:
-        name: Kitchen Cabinet Lights
-        description: Kitchen Cabinet Lights
-        display_categories: SWITCH
-      light.kitchen_lights:
-        name: Kitchen Lights
-        description: Kitchen Lights
-        display_categories: SWITCH
-      light.livingroom_lights:
-        name: Livingroom Lights
-        description: Livingroom Lights
-        display_categories: LIGHT
-      input_boolean.asleep:
-        name: Sleep Mode
-        description: Sleep Mode
-        display_categories: SWITCH
-      input_boolean.company:
-        name: Company Mode
-        description: Company Mode
-        display_categories: SWITCH
-      input_boolean.vacation:
-        name: Vacation Mode
-        description: Vacation Mode
-        display_categories: SWITCH
-      input_boolean.alarm_clock_status:
-        name: Alarm Clock
-        description: Alarm Clock
-        display_categories: SWITCH
+      exclude_entities:
+        - switch.auto_dr
+        - switch.n7x1_screen
+        - switch.n7x2_screen
+        - switch.tnix_screen
+        - light.br1
+        - light.br2
+        - light.kitchen_lights_1
+        - light.kitchen_lights_2
+        - light.lr_globe
+        - light.lr_hanging_globe
+    # entity_config:
+    #   light.bedroom_lights:
+    #     name: Bedroom Lights
+    #     description: Bedroom Lights
+    #     display_categories: LIGHT
+    #   light.hall_light:
+    #     name: Hall Light
+    #     description: Hallway Light
+    #     display_categories: SWITCH
+    #   light.entry_light:
+    #     name: Entry Light
+    #     description: Entry Light
+    #     display_categories: SWITCH
+    #   light.bathroom_light:
+    #     name: Bathroom Light
+    #     description: Bathroom Light
+    #     display_categories: SWITCH
+    #   switch.bathroom_fan:
+    #     name: Bathroom Fan
+    #     description: Bathroom Fan
+    #     display_categories: SWITCH
+    #   light.laundry_light:
+    #     name: Laundry Room Light
+    #     description: Laundry Room Light
+    #     display_categories: SWITCH
+    #   switch.laundry_fan:
+    #     name: Laundry Fan
+    #     description: Laundry Room Fan
+    #     display_categories: SWITCH
+    #   light.under_cabinet_lights:
+    #     name: Kitchen Cabinet Lights
+    #     description: Kitchen Cabinet Lights
+    #     display_categories: SWITCH
+    #   light.kitchen_lights:
+    #     name: Kitchen Lights
+    #     description: Kitchen Lights
+    #     display_categories: SWITCH
+    #   light.livingroom_lights:
+    #     name: Livingroom Lights
+    #     description: Livingroom Lights
+    #     display_categories: LIGHT
+    #   input_boolean.asleep:
+    #     name: Sleep Mode
+    #     description: Sleep Mode
+    #     display_categories: SWITCH
+    #   input_boolean.company:
+    #     name: Company Mode
+    #     description: Company Mode
+    #     display_categories: SWITCH
+    #   input_boolean.vacation:
+    #     name: Vacation Mode
+    #     description: Vacation Mode
+    #     display_categories: SWITCH
+    #   input_boolean.alarm_clock_status:
+    #     name: Alarm Clock
+    #     description: Alarm Clock
+    #     display_categories: SWITCH
