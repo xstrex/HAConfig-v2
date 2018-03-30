@@ -11,3 +11,14 @@
     entities:
       - light.br1
       - light.br2
+
+  - platform: group
+    name: Livingroom Lights
+    entities:
+      - light.lr_globe
+      - light.lr_hanging_globe
+
+  - platform: group
+    name: Kitchen Lights
+    entities:
+      - light.light.under_cabinet_lights
