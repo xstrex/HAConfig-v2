@@ -5,3 +5,9 @@
     entities:
       - light.kitchen_lights_1
       - light.kitchen_lights_2
+
+  - platform: group
+    name: Bedroom Lights
+    entities:
+      - light.br1
+      - light.br2

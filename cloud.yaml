@@ -6,22 +6,22 @@
         - scene
         - script
     entity_config:
-      group.bedroom_lights:
+      light.bedroom_lights:
         name: Bedroom Lights
         description: Bedroom Lights
         display_categories: LIGHT
       light.hall_light:
         name: Hall Light
         description: Hallway Light
-        display_categories: LIGHT
+        display_categories: SWITCH
       light.entry_light:
         name: Entry Light
         description: Entry Light
-        display_categories: LIGHT
+        display_categories: SWITCH
       light.bathroom_light:
         name: Bathroom Light
         description: Bathroom Light
-        display_categories: LIGHT
+        display_categories: SWITCH
       switch.bathroom_fan:
         name: Bathroom Fan
         description: Bathroom Fan
@@ -29,7 +29,7 @@
       light.laundry_light:
         name: Laundry Room Light
         description: Laundry Room Light
-        display_categories: LIGHT
+        display_categories: SWITCH
       switch.laundry_fan:
         name: Laundry Fan
         description: Laundry Room Fan
