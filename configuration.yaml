@@ -100,10 +100,6 @@ tts:
 
 # Devices
 
-# Climate
-#climate:
-#  - platform: zwave
-
 # ISY994(iz)
 isy994:
   host: !secret isy_host
@@ -135,10 +131,6 @@ octoprint:
   api_key: !secret octoprint_api_key
   bed: true
   number_of_tools: 1
-
-# Zwave
-#zwave:
-#  usb_path: /dev/ttyACM0
 
 # Services
 
@@ -178,7 +170,7 @@ apple_tv: !include apple_tv.yaml
 automation: !include automations.yaml
 # camera: !include camera.yaml
 device_tracker: !include device_tracker.yaml
-emulated_hue: !include emulated_hue.yaml
+# emulated_hue: !include emulated_hue.yaml
 group: !include groups.yaml
 history_graph: !include history_graph.yaml
 input_boolean: !include input_boolean.yaml
