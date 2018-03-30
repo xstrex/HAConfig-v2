@@ -170,7 +170,6 @@ apple_tv: !include apple_tv.yaml
 automation: !include automations.yaml
 # camera: !include camera.yaml
 device_tracker: !include device_tracker.yaml
-# emulated_hue: !include emulated_hue.yaml
 group: !include groups.yaml
 history_graph: !include history_graph.yaml
 input_boolean: !include input_boolean.yaml
