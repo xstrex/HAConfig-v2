@@ -100,6 +100,15 @@ tts:
 
 # Devices
 
+# Dyson 
+dyson:
+  username: !secret dyson_username
+  password: !secret dyson_password
+  language: EN
+  devices:
+    - device_id: !secret dyson_dev_id
+    - device_ip: !secret dyson_dev_ip
+
 # ISY994(iz)
 isy994:
   host: !secret isy_host
