@@ -104,7 +104,7 @@ tts:
 dyson:
   username: !secret dyson_username
   password: !secret dyson_password
-  language: EN
+  language: US
   devices:
     - device_id: !secret dyson_dev_id
     - device_ip: !secret dyson_dev_ip
