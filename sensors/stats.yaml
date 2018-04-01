@@ -36,9 +36,9 @@
   - platform: statistics
     name: livingroom_fan_dust
     entity_id: sensor.living_room_dust
-  - platform: statistics
-    name: livingroom_fan_filter_life
-    entity_id: sensor.living_room_filter_life
+  # - platform: statistics
+  #   name: livingroom_fan_filter_life
+  #   entity_id: sensor.living_room_filter_life
   - platform: statistics
     name: livingroom_fan_humidity
     entity_id: sensor.living_room_humidity
