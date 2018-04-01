@@ -218,6 +218,8 @@ kitchen_lights:
   icon: mdi:lightbulb-outline
   entities:
     - light.under_cabinet_lights
+    - switch.kitchen_light
+    - switch.dining_fan
 
 kitchen_power:
   name: Kitchen Power
