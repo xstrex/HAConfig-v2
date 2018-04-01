@@ -40,6 +40,7 @@ livingroom_view:
     - group.livingroom_lights
     - group.livingroom_media
     - group.livingroom_plant
+    - group.livingroom_fan
 
 bedroom_view:
   name: Bedroom
@@ -136,6 +137,7 @@ livingroom:
     - group.livingroom_lights
     - group.livingroom_media
     - group.livingroom_plant
+    - group.livingroom_fan
 
 livingroom_lights:
   name: Livingroom Lights
@@ -151,6 +153,17 @@ livingroom_media:
     - media_player.apple_tv
     - media_player.sony_bravia_tv
     - media_player.sony_receiver
+
+livingroom_fan:
+  name: Livingroom Fan
+  icon: mdi:fan
+  entities:
+    - fan.living_room
+    - sensor.living_room_temperature
+    - sensor.living_room_humidity
+    - sensor.living_room_air_quality
+    - sensor.living_room_dust
+    - sensor.living_room_filter_life
 
 bedroom:
   name: Bedroom
