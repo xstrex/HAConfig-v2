@@ -1,4 +1,6 @@
 # Statistics Sensors
+
+# Room env sensors
   - platform: statistics
     name: livingroom_temperature
     entity_id: sensor.livingroom_temperature
@@ -27,6 +29,23 @@
     name: office_heatindex
     entity_id: sensor.office_heatindex
 
+# Dyson fan sensors
+  - platform: statistics
+    name: livingroom_fan_air_quality
+    entity_id: sensor.living_room_air_quality
+  - platform: statistics
+    name: livingroom_fan_dust
+    entity_id: sensor.living_room_dust
+  - platform: statistics
+    name: livingroom_fan_filter_life
+    entity_id: sensor.living_room_filter_life
+  - platform: statistics
+    name: livingroom_fan_humidity
+    entity_id: sensor.living_room_humidity
+  - platform: statistics
+    name: livingroom_fan_temperature
+    entity_id: sensor.living_room_temperature
+
 # Averages
   - platform: min_max
     type: mean
@@ -34,6 +53,7 @@
     entity_ids:
       - sensor.house_temp
       - sensor.livingroom_heatindex_mean
+      - sensor.livingroom_fan_temperature_mean
 
   - platform: min_max
     type: mean
@@ -42,3 +62,4 @@
       - sensor.house_temp
       - sensor.livingroom_heatindex_mean
       - sensor.bedroom_heatindex_mean
+      - sensor.livingroom_fan_temperature_mean
