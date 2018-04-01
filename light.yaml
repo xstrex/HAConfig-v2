@@ -22,4 +22,3 @@
     name: Kitchen Lights
     entities:
       - light.under_cabinet_lights
-      - switch.kitchen_light

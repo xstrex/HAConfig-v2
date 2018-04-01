@@ -1,0 +1,330 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"ple",
+				"plex_id"
+			],
+			[
+				"mon",
+				"monit_cookie"
+			],
+			[
+				"un",
+				"unmonitor"
+			],
+			[
+				"em",
+				"emulated_hue_name"
+			],
+			[
+				"emulate",
+				"emulated_hue_hidden"
+			],
+			[
+				"kit",
+				"kitchen_lights_1"
+			],
+			[
+				"li",
+				"kitchen_lights_1"
+			],
+			[
+				"work",
+				"workday_sensor"
+			],
+			[
+				"livingroom",
+				"livingroom_harmony"
+			],
+			[
+				"bedroo",
+				"bedroom_lights_normal"
+			],
+			[
+				"livingr",
+				"livingroom_atv_pause"
+			],
+			[
+				"o_",
+				"o_octopi_camera"
+			],
+			[
+				"plan",
+				"plant1_status"
+			],
+			[
+				"titl",
+				"title2"
+			],
+			[
+				"o",
+				"o_light"
+			],
+			[
+				"b",
+				"b_light"
+			],
+			[
+				"lr",
+				"lr_lights"
+			],
+			[
+				"roo",
+				"roomba_find"
+			],
+			[
+				"p",
+				"p_motion"
+			],
+			[
+				"pat",
+				"patio_door"
+			],
+			[
+				"jon",
+				"jon_presence"
+			],
+			[
+				"tit",
+				"title2"
+			]
+		]
+	},
+	"buffers":
+	[
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 337.0,
+		"last_filter": "git pu",
+		"selected_items":
+		[
+			[
+				"git pu",
+				"Git: Pull"
+			],
+			[
+				"show",
+				"Git: Show Tags"
+			],
+			[
+				"lint",
+				"SublimeLinter: Reload SublimeLinter and its Plugins"
+			],
+			[
+				"color",
+				"UI: Select Color Scheme"
+			],
+			[
+				"inst",
+				"Package Control: Install Package"
+			]
+		],
+		"width": 462.0
+	},
+	"console":
+	{
+		"height": 151.0,
+		"history":
+		[
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/Users/Strex/Github/Home-Assistant"
+	],
+	"file_history":
+	[
+		"/Users/Strex/Library/Mobile Documents/com~apple~CloudDocs/sonoff notes",
+		"/Users/Strex/SpiderOak Hive/xstrex/Programming/Bash/Plex-update.sh",
+		"/Volumes/Documents/Technical Documents/sonoff notes",
+		"/Volumes/hass/apple_tv.yaml",
+		"/Volumes/hass/emulated_hue.yaml",
+		"/Volumes/hass/sensors/darksky.yaml",
+		"/Volumes/hass/sensors/cert_expiry.yaml",
+		"/Volumes/hass/hass.sublime-project",
+		"/Volumes/hass/notify.yaml",
+		"/Volumes/hass/sensors/miflora.yaml",
+		"/Volumes/hass/custom_components/device_tracker/traccar.py",
+		"/Volumes/hass/device_tracker.yaml",
+		"/Volumes/hass/zones.yaml",
+		"/Volumes/hass/light.yaml",
+		"/Volumes/hass/sensors/temp_humid.yaml",
+		"/Volumes/hass/sensors/time_date.yaml",
+		"/Volumes/hass/sensors/internet_status.yaml",
+		"/Volumes/hass/sensors/bt_dev.yaml",
+		"/Volumes/hass/scripts/internetstatus.sh",
+		"/Volumes/hass/scripts/getmonth.sh",
+		"/Volumes/hass/scripts/getday.sh",
+		"/Volumes/hass/scripts/getdayofweekshort.sh",
+		"/Volumes/hass/scripts/getdayofweek.sh",
+		"/Volumes/hass/scripts/btdev.sh",
+		"/Volumes/hass/sensors.yaml",
+		"/Users/Strex/SpiderOak Hive/Job Search/Notes",
+		"/Volumes/Silicon Labs VCP Driver Install Disk/uninstaller.sh",
+		"/Users/Strex/Downloads/uap_messages",
+		"/Users/Strex/SpiderOak Hive/Job Search/Questions for employer",
+		"/Users/Strex/Documents/Projects/HomeAssistant/Automations/automations.yaml",
+		"/Users/Strex/Documents/Projects/HomeAssistant/HADashboard/Main.dash.yaml",
+		"/Users/Strex/Documents/Projects/HomeAssistant/HADashboard/Livingroom.dash.yaml",
+		"/Users/Strex/Documents/Projects/HomeAssistant/HADashboard/Kitchen.dash.yaml",
+		"/Users/Strex/Documents/Projects/HomeAssistant/HADashboard/Patio.dash.yaml",
+		"/Users/Strex/Documents/Projects/HomeAssistant/HADashboard/Office.dash.yaml",
+		"/Users/Strex/Documents/Projects/HomeAssistant/HADashboard/Bedroom.dash.yaml",
+		"/Users/Strex/Documents/Projects/HomeAssistant/HADashboard/bottom_panel.yaml",
+		"/Users/Strex/Documents/Projects/HomeAssistant/HADashboard/Security.dash.yaml"
+	],
+	"find":
+	{
+		"height": 23.0
+	},
+	"find_in_files":
+	{
+		"height": 102.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": true,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"sheets":
+			[
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 23.0
+	},
+	"input":
+	{
+		"height": 38.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.SublimeLinter":
+	{
+		"height": 0.0
+	},
+	"output.SublimeLinter Messages":
+	{
+		"height": 98.0
+	},
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"output.git":
+	{
+		"height": 54.0
+	},
+	"pinned_build_system": "",
+	"project": "Home-Assistant.sublime-project",
+	"replace":
+	{
+		"height": 42.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"",
+				"untitled"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": false,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 165.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}
