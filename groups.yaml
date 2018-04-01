@@ -159,10 +159,10 @@ livingroom_fan:
   icon: mdi:fan
   entities:
     - fan.living_room
-    - sensor.living_room_temperature_mean
-    - sensor.living_room_humidity_mean
-    - sensor.living_room_air_quality_mean
-    - sensor.living_room_dust_mean
+    - sensor.livingroom_fan_temperature_mean
+    - sensor.livingroom_fan_humidity_mean
+    - sensor.livingroom_fan_air_quality_mean
+    - sensor.livingroom_fan_dust_mean
     - sensor.living_room_filter_life
 
 bedroom:
