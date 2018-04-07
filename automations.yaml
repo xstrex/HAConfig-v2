@@ -49,6 +49,34 @@
   - service: scene.turn_on
     entity_id: scene.lr_media
 
+- id: tv_on-atv_on
+  alias: TV on - Apple TV on
+  trigger:
+  - platform: state
+    entity_id: media_player.sony_bravia_tv
+    to: 'on'
+  condition:
+  - condition: state
+    entity_id: media_player.apple_tv
+    state: 'off'
+  action:
+  - service: media_player.turn_on
+    entity_id: media_player.apple_tv
+
+- id: tv_off-atv_off
+  alias: TV off - Apple TV off
+  trigger:
+  - platform: state
+    entity_id: media_player.sony_bravia_tv
+    to: 'off'
+  condition:
+  - condition: state
+    entity_id: media_player.apple_tv
+    state: 'on'
+  action:
+  - service: media_player.turn_off
+    entity_id: media_player.apple_tv
+
 # Time of Day Lights
 - id: evening_lights
   alias: Evening Lights
