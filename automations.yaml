@@ -939,3 +939,43 @@
   action:
     service: homeassistant.turn_on
     entity_id: script.washing_machine_notify
+
+# Dyson Livingroom Fan
+- id: TV on Fan low
+  alias: TV on Fan low
+  trigger:
+  - platform: state
+    entity_id: media_player.sony_bravia_tv
+    to: 'on'
+  - platform: state
+    entity_id: media_player.apple_tv
+    to: 'on'
+  condition:
+    condition: state
+    entity_id: device_tracker.jon_iphone
+    state: 'home'
+  action:
+    service: fan.set_speed
+    entity_id: fan.living_room
+    data:
+      speed: '2'
+
+
+- id: TV off Fan auto
+  alias: TV off Fan auto
+  trigger:
+  - platform: state
+    entity_id: media_player.sony_bravia_tv
+    to: 'off'
+  - platform: state
+    entity_id: media_player.apple_tv
+    to: 'off'
+  condition:
+    condition: state
+    entity_id: device_tracker.jon_iphone
+    state: 'home'
+  action:
+    service: fan.set_speed
+    entity_id: fan.living_room
+    data:
+      speed: 'AUTO'
