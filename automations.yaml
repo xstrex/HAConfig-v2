@@ -72,7 +72,7 @@
   condition:
   - condition: state
     entity_id: media_player.apple_tv
-    state: 'on'
+    state: 'idle'
   action:
   - service: media_player.turn_off
     entity_id: media_player.apple_tv
