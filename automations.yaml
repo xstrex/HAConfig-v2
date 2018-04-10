@@ -941,15 +941,12 @@
     entity_id: script.washing_machine_notify
 
 # Dyson Livingroom Fan
-- id: TV on Fan low
+- id: TV playing Fan low
   alias: TV on Fan low
   trigger:
-  - platform: state
-    entity_id: media_player.sony_bravia_tv
-    to: 'on'
-  - platform: state
+    platform: state
     entity_id: media_player.apple_tv
-    to: 'on'
+    to: 'playing'
   condition:
     condition: state
     entity_id: device_tracker.jon_iphone
@@ -961,15 +958,15 @@
       speed: '2'
 
 
-- id: TV off Fan auto
+- id: TV paused Fan auto
   alias: TV off Fan auto
   trigger:
   - platform: state
-    entity_id: media_player.sony_bravia_tv
-    to: 'off'
+    entity_id: media_player.apple_tv
+    to: 'idle'
   - platform: state
     entity_id: media_player.apple_tv
-    to: 'off'
+    to: 'paused'
   condition:
     condition: state
     entity_id: device_tracker.jon_iphone
@@ -979,3 +976,4 @@
     entity_id: fan.living_room
     data:
       speed: 'AUTO'
+      
