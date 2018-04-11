@@ -61,3 +61,5 @@ gitupdate.sh
 /custom_components/media_player/*
 entity_registry.yaml
 panels/floorplan.html
+*.sublime-project
+*.sublime-workspace
